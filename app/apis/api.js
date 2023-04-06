@@ -1,4 +1,4 @@
-export const BASE_URL = "https://fixitchile.com/ServiceApp/"
+export const BASE_URL = "https://fixitchile.com/CustomerApp/"
 
 
 
@@ -30,6 +30,14 @@ export const GETRATINGS_URL = BASE_URL+'getRatings.php';
 export const PAYMENT_URL = BASE_URL+'payment.php';
 export const GETHISTORY_URL = BASE_URL+'getHistory.php';
 export const FINALIZE_URL = BASE_URL+'finalize.php';
+export const REQUESTSERVICES_URL = BASE_URL+'requestService.php';
+export const SERVICEAPPLY_URL = BASE_URL+'serviceApply.php';
+export const SERVICEOFFER_URL = BASE_URL+'serviceOffer.php';
+export const SERVICEACCEPTOFFER_URL = BASE_URL+'serviceAcceptOffer.php';
+export const GIVERATINGS_URL = BASE_URL+'giveRatings.php';
+
+
+
 
 
 

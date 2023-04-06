@@ -36,7 +36,7 @@ const SignupScreen = ({ route, navigation }) => {
   const [backgroundCheckCertificatesBase64, setbackgroundCheckCertificatesBase64] = useState(null)
   const [professionCertificatesBase64, setProfessionCertificatesBase64] = useState(null)
   const [backgroundCheckCertificates, setbackgroundCheckCertificates] = useState(null)
-4
+  4
   const [fullName, setFullName] = useState(null)
   const [dni, setDni] = useState(null)
   const [phonenumber, setPhonenumber] = useState(null)
@@ -53,32 +53,7 @@ const SignupScreen = ({ route, navigation }) => {
   let wide = Layout.width;
   let high = Layout.height;
 
-  useEffect(() => {
-    setLoading(true)
-    axios({
-      method: 'POST',
-      url: api.CATEGORY_URL,
 
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then(function (response) {
-        // console.log(response.data.categories)
-        setCategories(response.data.categories)
-        setLoading(false)
-
-      })
-      .catch(function (error) {
-        console.log("error", error)
-      })
-
-
-
-
-
-  }, [])
 
   const UploadImage = () => {
     Alert.alert(
@@ -147,140 +122,8 @@ const SignupScreen = ({ route, navigation }) => {
       { cancelable: false }
     );
   }
-  const FrontSide = () => {
-    Alert.alert(
-      "DNI Front Side Picture",
-      'Select Pic From',
-      [
-        {
-          text: 'Gallery',
-          onPress: () => {
-            ImagePicker.openPicker({
-
-              width: 500,
-              height: 500,
-              cropping: true,
-              cropperCircleOverlay: true,
-              sortOrder: 'none',
-              compressImageMaxWidth: 1000,
-              compressImageMaxHeight: 1000,
-              compressImageQuality: 1,
-              compressVideoPreset: 'MediumQuality',
-              includeExif: true,
-              cropperStatusBarColor: 'white',
-              cropperToolbarColor: 'white',
-              cropperActiveWidgetColor: 'white',
-              cropperToolbarWidgetColor: '#3498DB',
-              mediaType: 'photo',
-              includeBase64: true
-            })
-              .then((image) => {
-                // setBase64(image.data)
-                // setProfileImage(image.path)
-                setFrontSideDNI(image.path)
-                setFrontSideDNIBase64(image.data)
-
-              })
-              .catch((e) => {
-                //Toast.show("Failed")
-              });
-          }
-        },
-        {
-          text: 'Camera', onPress: () => {
-            ImagePicker.openCamera({
-              width: 300,
-              height: 400,
-              cropping: true,
-              mediaType: 'photo',
-              includeBase64: true
-            }).then(image => {
-
-              // setBase64(image.data)
-              // setProfileImage(image.path)
-              setFrontSideDNI(image.path)
-              setFrontSideDNIBase64(image.data)
 
 
-            });
-          }
-        },
-        {
-          text: 'Cancel',
-          // onPress: () => Toast.show('Cancel Pressed'),
-          style: 'cancel'
-        }
-      ],
-      { cancelable: false }
-    );
-  }
-  const BackSide = () => {
-    Alert.alert(
-      "DNI Back Side Picture",
-      'Select Pic From',
-      [
-        {
-          text: 'Gallery',
-          onPress: () => {
-            ImagePicker.openPicker({
-
-              width: 500,
-              height: 500,
-              cropping: true,
-              cropperCircleOverlay: true,
-              sortOrder: 'none',
-              compressImageMaxWidth: 1000,
-              compressImageMaxHeight: 1000,
-              compressImageQuality: 1,
-              compressVideoPreset: 'MediumQuality',
-              includeExif: true,
-              cropperStatusBarColor: 'white',
-              cropperToolbarColor: 'white',
-              cropperActiveWidgetColor: 'white',
-              cropperToolbarWidgetColor: '#3498DB',
-              mediaType: 'photo',
-              includeBase64: true
-            })
-              .then((image) => {
-                // setBase64(image.data)
-                // setProfileImage(image.path)
-                setBackSideDNI(image.path)
-                setBackSideDNIBase64(image.data)
-
-              })
-              .catch((e) => {
-                //Toast.show("Failed")
-              });
-          }
-        },
-        {
-          text: 'Camera', onPress: () => {
-            ImagePicker.openCamera({
-              width: 300,
-              height: 400,
-              cropping: true,
-              mediaType: 'photo',
-              includeBase64: true
-            }).then(image => {
-
-              // setBase64(image.data)
-              // setProfileImage(image.path)
-              setBackSideDNI(image.path)
-              setBackSideDNIBase64(image.data)
-
-
-            });
-          }
-        },
-        {
-          text: 'Cancel',
-          // onPress: () => Toast.show('Cancel Pressed'),
-          style: 'cancel'
-        }
-      ],
-      { cancelable: false }
-    );
-  }
   const BackGroundCheck = useCallback(async () => {
     try {
       const response = await DocumentPicker.pick({
@@ -300,23 +143,11 @@ const SignupScreen = ({ route, navigation }) => {
       console.warn(err);
     }
   }, []);
-  const Profession = useCallback(async () => {
-    try {
-      const response = await DocumentPicker.pick({
-        presentationStyle: 'fullScreen',
-        type: [DocumentPicker.types.allFiles],
 
-      });
-      setProfessionCertificates(response);
-
-    } catch (err) {
-      console.warn(err);
-    }
-  }, []);
 
   const Signup = () => {
 
-    
+
     if (fullName == null) {
       setFullName(false)
       return
@@ -345,30 +176,7 @@ const SignupScreen = ({ route, navigation }) => {
       setAddress(false)
       return
     }
-    if (categoryValue == 'Select Category') {
-      setCategoryValue(false)
-      return
-    }
-    if (subCategoryValue == 'Select Category') {
-      setSubCategoryValue(false)
-      return
-    }
-    if (accountHolderName == null) {
-      setAccountHolderName(false)
-      return
-    }
-    if (typeOfAccount == null) {
-      setTypeOfAccount(false)
-      return
-    }
-    if (accountNumber == null) {
-      setAccountNumber(false)
-      return
-    }
-    if (bankName == null) {
-      setBankName(false)
-      return
-    }
+
     if (image == null) {
       Alert.alert(
         '',
@@ -376,20 +184,7 @@ const SignupScreen = ({ route, navigation }) => {
       );
       return
     }
-    if (frontSideDNI == null) {
-      Alert.alert(
-        '',
-        'Please Upload DNI Front Side Image',
-      );
-      return
-    }
-    if (backSideDNI == null) {
-      Alert.alert(
-        '',
-        'Please Upload DNI Back Side Image',
-      );
-      return
-    }
+
     if (backgroundCheckCertificates == null) {
       Alert.alert(
         '',
@@ -404,6 +199,11 @@ const SignupScreen = ({ route, navigation }) => {
     //   );
     //   return
     // }
+
+
+    setLoading(true)
+
+
     var formData = new FormData();
     formData.append('name', fullName);
     formData.append('dni', dni);
@@ -412,14 +212,6 @@ const SignupScreen = ({ route, navigation }) => {
     formData.append('password', password);
     formData.append('experience', experience);
     formData.append('address', address);
-    // formData.append('category', categoriesId);
-    // formData.append('sub_category', subCategoriesId);
-    formData.append('account_name', accountHolderName);
-    formData.append('type_of_account', typeOfAccount);
-    formData.append('account_number', accountNumber);
-    formData.append('bank_name', bankName);
-    formData.append('front_side', frontSideDNIBase64);
-    formData.append('back_side', backSideDNIBase64);
     formData.append('image', imageBase64);
     backgroundCheckCertificates.map((file, index) => (
       formData.append('background', {
@@ -428,15 +220,6 @@ const SignupScreen = ({ route, navigation }) => {
         name: file.name,
       })
     ))
-    // professionCertificates.map((file, index) => (
-    //   formData.append('profession', {
-    //     uri: file.uri,
-    //     type: file.type,
-    //     name: file.name,
-    //   })
-    // ))
-
-    setLoading(true)
     axios({
       method: 'POST',
       url: api.SIGNUP_URL,
@@ -448,7 +231,7 @@ const SignupScreen = ({ route, navigation }) => {
       }
     })
       .then(function (response) {
-       
+
         if (response.data.signup.error == 'false') {
           setLoading(false)
           Alert.alert(
@@ -561,21 +344,7 @@ const SignupScreen = ({ route, navigation }) => {
                 :
                 <></>
               }
-              <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Brief Experience</Text>
-                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput placeholder='Enter Brief Experience' onChangeText={text => setExperience(text)} style={{ marginHorizontal: wide * 0.05 }} />
-                </View>
-              </View>
-              {experience == false ?
-                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
-                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Brief Experience Can't Be Blank</Text>
-                  </View>
-                </View>
-                :
-                <></>
-              }
+
               <View style={{ marginTop: wide * 0.05 }} >
                 <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Address</Text>
                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
@@ -591,71 +360,7 @@ const SignupScreen = ({ route, navigation }) => {
                 :
                 <></>
               }
-              <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
-                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Bank Details</Text>
-              </View>
 
-              <View style={{ marginTop: wide * 0.07 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Account Holder Name</Text>
-                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput placeholder='Enter Account Holder Name' onChangeText={text => setAccountHolderName(text)} style={{ marginHorizontal: wide * 0.05 }} />
-                </View>
-              </View>
-              {accountHolderName == false ?
-                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
-                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Account Holder Name Can't Be Blank</Text>
-                  </View>
-                </View>
-                :
-                <></>
-              }
-              <View style={{ marginTop: wide * 0.07 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Type Of Account</Text>
-                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput placeholder='Enter Type Of Account' onChangeText={text => setTypeOfAccount(text)} style={{ marginHorizontal: wide * 0.05 }} />
-                </View>
-              </View>
-              {typeOfAccount == false ?
-                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
-                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Type Of Account Can't Be Blank</Text>
-                  </View>
-                </View>
-                :
-                <></>
-              }
-              <View style={{ marginTop: wide * 0.07 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Account Number</Text>
-                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput placeholder='Enter Account Number' onChangeText={text => setAccountNumber(text)} style={{ marginHorizontal: wide * 0.05 }} />
-                </View>
-              </View>
-              {accountNumber == false ?
-                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
-                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Account Number Can't Be Blank</Text>
-                  </View>
-                </View>
-                :
-                <></>
-              }
-              <View style={{ marginTop: wide * 0.07 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Bank Name</Text>
-                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput placeholder='Enter Bank Name' onChangeText={text => setBankName(text)} style={{ marginHorizontal: wide * 0.05 }} />
-                </View>
-              </View>
-
-              {bankName == false ?
-                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
-                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Bank Name Can't Be Blank</Text>
-                  </View>
-                </View>
-                :
-                <></>
-              }
               <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
                 <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Upload Your Image</Text>
               </View>
@@ -676,50 +381,10 @@ const SignupScreen = ({ route, navigation }) => {
 
                   </View>
                 </TouchableOpacity>
-            
+
 
               </View>
-              
-              <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
-                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Upload DNI Images</Text>
-              </View>
 
-              <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: wide * 0.07 }}>
-
-                <TouchableOpacity onPress={() => FrontSide()}>
-                  <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    {frontSideDNI != null ?
-                      <Image
-                        style={{ width: wide * 0.2, height: wide * 0.15, borderRadius: wide * 0.02, marginBottom: wide * 0.02, marginTop: wide * 0.03 }}
-                        source={{ uri: frontSideDNI }}
-                      />
-                      :
-                      <Entypo name='v-card' size={wide * 0.2} color="#000" />
-                    }
-                    <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600' }}>Front Side</Text>
-
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => BackSide()}>
-                  <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-
-
-                    {backSideDNI != null ?
-                      <Image
-                        style={{ width: wide * 0.2, height: wide * 0.15, borderRadius: wide * 0.02, marginBottom: wide * 0.02, marginTop: wide * 0.03 }}
-                        source={{ uri: backSideDNI }}
-                      />
-                      :
-                      <Entypo name='v-card' size={wide * 0.2} color="#000" />
-                    }
-
-
-                    <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600' }}>Back Side</Text>
-
-                  </View>
-                </TouchableOpacity>
-
-              </View>
 
               <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
                 <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Certificates</Text>
@@ -735,23 +400,15 @@ const SignupScreen = ({ route, navigation }) => {
                       :
                       <MaterialCommunityIcons name='certificate' size={wide * 0.23} color="#000" />
                     }
-
-
                     <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', alignSelf: 'center' }}>Background Check</Text>
-
                   </View>
                 </TouchableOpacity>
-
-
               </View>
-
-
               <TouchableOpacity onPress={() => Signup()} style={{ marginTop: wide * 0.1, justifyContent: 'center', alignItems: 'center' }} >
                 <View style={{ backgroundColor: Colors.main, height: wide * 0.14, borderRadius: wide * 0.1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
                   <View style={{ flex: 3, alignItems: 'center', }}>
                     <Text style={{ color: Colors.white, fontSize: wide * 0.04, fontWeight: 'bold' }}>SIGN UP</Text>
                   </View>
-
                 </View>
               </TouchableOpacity>
               <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: wide * 0.04 }}>

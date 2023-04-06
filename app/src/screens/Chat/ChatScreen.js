@@ -71,62 +71,38 @@ const ChatScreen = ({ navigation }) => {
         async function check() {
             const data = await AsyncStorage.getItem('user')
             const userData = JSON.parse(data)
-
-
             var formData = new FormData();
-
-            formData.append('id', userData.login.data.id);
-            
+            formData.append('id', userData.login.data.id);    
             axios({
                 method: 'POST',
                 url: api.GETCHATLIST_URL,
                 data: formData,
-
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'multipart/form-data'
                 }
             })
                 .then(function (response) {
-
-                   
                     if (response.data.data[0].error == 'true') {
                         setLoading(false)
-
-
                     } else {
                         setLoading(false)
-
                         setChatList(response.data.data)
                     }
-
-
-
                 })
                 .catch(function (error) {
                     console.log("error1", error)
                     setLoading(false)
                 })
-
-
-
         }
-
         setLoading(true)
         check()
         setInterval(
-
             () => {
                 check()
             },
-
-
             5000
         );
-
-
-
-
     }, [])
 
 
@@ -185,12 +161,17 @@ const ChatScreen = ({ navigation }) => {
                                 showsVerticalScrollIndicator={false}
                                 alwaysBounceVertical={false}
                                 style={{ marginTop: wide * 0.03 }}
-                                keyExtractor={item => item.customer_id}
+                                keyExtractor={item => item.id}
                                 ListFooterComponent={() => <View style={{ marginBottom: high * 0.15 }}></View>}
                                 renderItem={(item, index, arr) => {
                                     return (
-                                        <TouchableOpacity onPress={() => navigation.navigate("ChatScreen", {
-                                            services_data: item.item
+                                        <TouchableOpacity onPress={() => navigation.navigate("ChatScreen", 
+                                            {
+                                                customer_id:item.item.id,
+                                                // service_id:service_id,
+                                                // min_price:min_price,
+                                                name:item.item.customer_name
+                                            
                                         })}>
                                             <View style={{ borderColor: Colors.main, borderTopWidth: 0.4, marginTop: wide * 0.04 }}>
                                                 <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: wide * 0.03 }}>

@@ -76,6 +76,8 @@ const LoginScreen =  ({ navigation }) => {
       }
     },)
       .then( async (response)=> {
+
+        console.log(response.data)
         if (response.data.login.error == 'false') {
           setLoading(false)
           Alert.alert(

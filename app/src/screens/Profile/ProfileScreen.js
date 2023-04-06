@@ -43,7 +43,7 @@ const ProfileScreen = ({ navigation }) => {
             })
                 .then(function (response) {
 
-
+console.log(response.data)
                     setUserDetails(response.data[0])
                     setLoading(false)
                 })

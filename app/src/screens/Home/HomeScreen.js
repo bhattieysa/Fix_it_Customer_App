@@ -55,6 +55,7 @@ const HomeScreen = ({ navigation }) => {
 
   const [loading, setLoading] = useState(false)
   const [categories, setCategories] = useState(null)
+  const [sub_categories, setSubCategories] = useState(null)
   const [categories1, setCategories1] = useState(null)
   const [categoriesIndex, setCategoriesIndex] = useState()
   const [showCategoryDropDown, setShowCategoryrDropDown] = useState(false)
@@ -73,22 +74,19 @@ const HomeScreen = ({ navigation }) => {
 
 
   useEffect(() => {
-
-
-
     async function check() {
       const data = await AsyncStorage.getItem('user')
       const userData = JSON.parse(data)
 
       setUserName(userData.login.data.name)
-      var formData = new FormData();
+      // var formData = new FormData();
 
-      formData.append('id', userData.login.data.id);
+      // formData.append('id', userData.login.data.id);
       setLoading(true)
       axios({
         method: 'POST',
         url: api.USERCATEGORIES_URL,
-        data: formData,
+        // data: formData,
 
         headers: {
           'Accept': 'application/json',
@@ -96,8 +94,10 @@ const HomeScreen = ({ navigation }) => {
         }
       })
         .then(function (response) {
+          console.log(response.data)
           if (response.data.categories[0].error != 'true') {
             setCategories(response.data.categories)
+            setSubCategories(response.data.sub_categories)
           }
           // setUserDetails(response.data[0])
           setLoading(false)
@@ -106,104 +106,9 @@ const HomeScreen = ({ navigation }) => {
           console.log("error1", error)
           //setLoading(false)
         })
-
-
-
-      axios({
-        method: 'POST',
-        url: api.CATEGORY_URL,
-
-
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-        .then(function (response) {
-
-
-          setCategories1(response.data.categories)
-          // setUserDetails(response.data[0])
-          setLoading(false)
-        })
-        .catch(function (error) {
-          console.log("error1", error)
-          //setLoading(false)
-        })
-
-
-
-
     }
-
     check()
-
-
-
-
   }, [])
-  const addCategory = async (id) => {
-
-
-    const data = await AsyncStorage.getItem('user')
-    const userData = JSON.parse(data)
-    var formData = new FormData();
-
-    formData.append('user_id', userData.login.data.id);
-    formData.append('cat_id', id);
-
-    setLoading(true)
-    axios({
-      method: 'POST',
-      url: api.ADDCATEGORY_URL,
-      data: formData,
-
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then(function (response) {
-
-console.log(response.data)
-        if (response.data.categories[0].error != "true") {
-          setCategories(response.data.categories)
-          setShowCategoryrDropDown(false)
-          setLoading(false)
-          Alert.alert(
-            '',
-            response.data.categories[0].message,
-          );
-        } else {
-          setShowCategoryrDropDown(false)
-          setLoading(false)
-          Alert.alert(
-            '',
-            response.data.categories[0].message,
-          );
-        }
-
-
-      })
-      .catch(function (error) {
-        console.log("error11", error)
-        //setLoading(false)
-      })
-
-
-
-
-
-  }
-
-
-
-
-
-  // const openDrawer = () => {
-
-  //   navigation.openDrawer();
-  // }
 
 
 
@@ -223,151 +128,80 @@ console.log(response.data)
         :
         <StatusBar barStyle="light-content" backgroundColor={Colors.main} />
       }
-   <AppLoader visible={loading} />
+      <AppLoader visible={loading} />
       <SafeAreaView style={{ flex: 1 }} >
         <View style={{ marginHorizontal: wide * 0.045, marginTop: wide * 0.025 }}>
           {/* <ScrollView showsVerticalScrollIndicator={false} bounces={false}> */}
-       
-          {showCategoryDropDown === true ?
-            <Modal
-              animationType="fade"
-              transparent={true}
-              visible={showCategoryDropDown}
-            >
-              <View
-                // onPress={() => setShowGenderDropDown(false)}
-                style={{
-                  width: wide,
-                  height: high,
-                  justifyContent: 'center', alignItems: 'center'
-                }}
-              >
-                <BlurView style={{
-                  width: wide,
-                  height: high,
-                  position: 'absolute',
-                  // justifyContent: 'center', alignItems: 'center'
-                }}
-                  blurAmount={10}
-                  blurRadius={10}
-                />
-                <View style={{
-                  width: '65%', height: wide * 0.6, backgroundColor: '#ffffff',
-                  marginTop: 20, borderRadius: 20, alignItems: 'center',
-                }}>
-                  <View style={{
-                    width: '100%', height: '30%',
-                    alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: Colors.main,
-                    borderTopLeftRadius: 20,
-                    borderTopRightRadius: 20,
-                    flexDirection: 'row',
-                    // borderBottomColor: Colors.newGrayFontColor, borderBottomWidth: 1
-                  }}>
-                    <Text style={{
-                      marginLeft: wide * 0.03, flex: 1, color: Colors.white, fontSize: 18, fontWeight: '700', marginTop: wide * 0.01,
-                    }}>Select Category</Text>
-                    <Ionicons name="ios-close" onPress={() => setShowCategoryrDropDown(false)} style={{ marginRight: wide * 0.02 }} size={34} color="#fff" />
-                  </View>
-                  <View style={{ width: '100%', height: '70%', }}>
-                    <FlatList
-                      data={categories1}
-                      bounce={false}
-                      showsVerticalScrollIndicator={false}
-                      keyExtractor={item => item.id}
-                      renderItem={(item, index) =>
-                        <TouchableOpacity
-                          style={{
-                            justifyContent: 'center', alignItems: 'center',
-                            height: wide * 0.13, marginTop: wide * 0.01,
-                            borderBottomColor: 'grey', borderBottomWidth: 1
-                          }}
 
 
-                          onPress={() => {
-
-                            addCategory(item.item.id)
-
-                          }}
-
-                        >
-
-                          <Text style={{
-                            color: '#000000', fontSize: 15, lineHeight: 16,
-                          }}>{item.item.name}</Text>
-                        </TouchableOpacity>
-                      }
-                    />
-                  </View>
-                </View>
-                {/* </BlurView>  */}
+          <View >
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={{ flex: 1, color: Colors.main, fontWeight: 'bold', fontSize: wide * 0.08 }}>Hi, {userName}</Text>
+              <View style={{}}>
+                <Image
+                  style={{ width: wide * 0.45, height: wide * 0.22, resizeMode: 'stretch', alignSelf: 'center' }}
+                  source={require('../../../Images/logo.png')} />
               </View>
-            </Modal>
-            : null
-          }
-    
-            <View >
-              <View style={{ flexDirection: 'row' }}>
-                <Text style={{ flex: 1, color: Colors.main, fontWeight: 'bold', fontSize: wide * 0.08 }}>Hi, {userName}</Text>
-                <View style={{}}>
-                  <Image 
-
-                   style={{ width: wide * 0.45, height: wide * 0.22, resizeMode: 'stretch', alignSelf: 'center' }}
-                   source={require('../../../Images/logo.png')}/>
-                <TouchableOpacity
-                  style={{
-                    backgroundColor: Colors.main,
-                    width: wide * 0.4,
-                   
-                    borderRadius: wide * 0.03,
-                    height: wide * 0.08,
-                    justifyContent:'center',
-
-                    marginBottom: wide * 0.04
-                  }}
-                  onPress={() => {
-                    setShowCategoryrDropDown(true)
-                  }}><Text style={{
-                    color: '#ffffff',
-                    alignSelf: 'center',
-                    fontWeight: 'bold',
-                    fontSize: wide * 0.035,
-                   
-
-                  }}>Add Category</Text></TouchableOpacity>
-                  </View>
-              </View>
-
-{categories != null ?
-                <FlatList
-                  data={categories}
-                  bounce={false}
-                  showsVerticalScrollIndicator={false}
-                  alwaysBounceVertical={false}
-                  style={{ marginTop: wide * 0.03 }}
-                  keyExtractor={item => item.service_cat_id}
-                  ListFooterComponent={() => <View style={{ marginBottom: high * 0.15 }}></View>}
-                  renderItem={(item, index, arr) => {
-                    return (
-                      <View style={{ marginTop: wide * 0.01 }}>
-                        <Text style={{ fontSize: wide * 0.05, alignSelf: 'center', fontWeight: 'bold' }}>{item.item.name} ({item.item.commission}%)</Text>
-
-                        <SubCategory cat_id={item.item.id} navigation={navigation} />
-
-                      </View>
-
-                    )
-                  }} />
-
-                :
-                <></>
-              }
-
-
-
-
-
             </View>
+<Text style={{ color: Colors.main, fontWeight: 'bold',fontSize:wide*0.07,marginTop:wide*0.04,}}>What do you need?</Text>
+            {categories != null ?
+              <FlatList
+                data={categories}
+                bounce={false}
+                numColumns={3}                 
+        columnWrapperStyle={{
+        flex:1,
+         
+       
+          
+        }}
+
+                showsVerticalScrollIndicator={false}
+                alwaysBounceVertical={false}
+                style={{ marginTop: wide * 0.03,marginHorizontal:wide*0.02, }}
+                keyExtractor={item => item.id}
+                ListFooterComponent={() => <View style={{ marginBottom: high * 0.3 }}></View>}
+                renderItem={(item, index, arr) => {
+                  const lastItem = index === item.length - 1;
+                  return (
+                    <View style={{ marginVertical: wide * 0.04, marginRight:lastItem?0:wide*0.065}}>
+                      <TouchableOpacity
+                        onPress={() => {
+
+                          navigation.navigate("SubCategoryScreen",{
+                            "data":sub_categories,
+                            "name":item.item.name,
+                            "id":item.item.id,
+                          })
+                        }}
+                        style={{ marginRight: wide * 0.06, width: wide * 0.20}} >
+                       
+                        <FastImage
+                          resizeMode={FastImage.resizeMode.stretch}
+                          style={{ width: wide * 0.20, height: wide * 0.20, borderRadius: wide * 0.03 }}
+                          source={{ uri: api.Image_Admin_URL + item.item.image }} />
+                        <Text style={{ alignSelf: 'center', marginTop: wide * 0.025, fontSize: wide * 0.045, color: '#000000' }}>{item.item.name}</Text>
+
+                      </TouchableOpacity>
+
+
+
+                      {/* <SubCategory cat_id={item.item.id} navigation={navigation} /> */}
+
+                    </View>
+
+                  )
+                }} />
+
+              :
+              <></>
+            }
+
+
+
+
+
+          </View>
 
         </View>
       </SafeAreaView>

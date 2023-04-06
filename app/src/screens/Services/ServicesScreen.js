@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import * as api from '../../../apis/api';
+import { Rating, AirbnbRating } from 'react-native-ratings';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -49,12 +50,14 @@ const ServicesScreen = ({ navigation }) => {
 
     const [selectedDay, setSelectedDay] = useState(1)
     const [loading, setLoading] = useState(false)
-    const [ratings, setRatings] = useState(null)
+    const [ratingsValue, setRatingsValue] = useState(null)
+    const [ratingsComment, setRatingsComment] = useState(null)
     const [servicesData, setServicesData] = useState(null)
     const [notDone, setNotDone] = useState(false)
     const [done, setDone] = useState(false)
     const [reason, setReason] = useState(null)
     const [servicesID, setServicesID] = useState(null)
+    const [ratings, setRatings] = useState(false)
     const navigation1 = useNavigation();
 
     useEffect(() => {
@@ -81,6 +84,8 @@ const ServicesScreen = ({ navigation }) => {
                 }
             })
                 .then(function (response) {
+
+                    console.log(response.data.data)
                     if (response.data.data[0].error == 'true') {
                         setLoading(false)
 
@@ -96,39 +101,6 @@ const ServicesScreen = ({ navigation }) => {
                 })
 
 
-            axios({
-                method: 'POST',
-                url: api.GETRATINGS_URL,
-                data: formData,
-
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-                .then(function (response) {
-
-                    console.log(response.data.ratings)
-
-                    if (response.data.data[0].error != "true") {
-
-                        setLoading(false)
-                        setRatings(response.data.ratings)
-
-                    } else {
-
-                        setLoading(false)
-                        setRatings(response.data.ratings)
-
-                    }
-
-
-                })
-                .catch(function (error) {
-                    console.log("error11", error)
-                    //setLoading(false)
-                })
-
 
 
         }
@@ -140,8 +112,67 @@ const ServicesScreen = ({ navigation }) => {
 
     }, [])
 
+    
+    const sendRatting = async (id) => {
 
-    const sendNotDone = async () => {
+
+
+
+
+        var formData = new FormData();
+
+
+        formData.append('comment', ratingsComment);
+        formData.append('ratings', ratingsValue);
+        formData.append('services_id', servicesID);
+        setLoading(true)
+        axios({
+            method: 'POST',
+            url: api.GIVERATINGS_URL,
+            data: formData,
+
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+            .then(function (response) {
+
+
+                if (response.data.data[0].error == 'true') {
+                    setLoading(false)
+
+
+                } else {
+                    setLoading(false)
+                    setNotDone(false)
+                    Alert.alert(
+                        '',
+                        'Rattings Given Successful',
+                        [
+
+                            {
+                                text: 'Okay', onPress: () => {
+                                   setRatings(false)
+                                }
+                            },
+                        ],
+                        { cancelable: true }
+                    )
+
+                }
+
+
+
+            })
+            .catch(function (error) {
+                console.log("error1", error)
+                setLoading(false)
+            })
+
+
+    }
+    const sendNotDone = async (id) => {
 
 
 
@@ -229,7 +260,7 @@ const ServicesScreen = ({ navigation }) => {
         })
             .then(function (response) {
 
-                console.log(response.data)
+                console.log(response.data.data)
                 if (response.data.data[0].error == 'true') {
                     setLoading(false)
 
@@ -266,6 +297,121 @@ const ServicesScreen = ({ navigation }) => {
             }
 
             <SafeAreaView style={{ flex: 1 }} >
+
+
+
+
+
+            {ratings === true ?
+                    <Modal
+                        animationType="fade"
+                        transparent={true}
+                        visible={ratings}
+                    >
+                        <View
+                            // onPress={() => setShowGenderDropDown(false)}
+                            style={{
+                                width: wide,
+                                height: high,
+                                justifyContent: 'center', alignItems: 'center'
+                            }}
+                        >
+                            <BlurView style={{
+                                width: wide,
+                                height: high,
+                                position: 'absolute',
+                                // justifyContent: 'center', alignItems: 'center'
+                            }}
+                                blurAmount={10}
+                                blurRadius={10}
+                            />
+                            <View style={{
+                                width: '90%', height: wide * 1.3, backgroundColor: '#ffffff',
+                                marginTop: 20, borderRadius: 20, alignItems: 'center',
+                            }}>
+                                <View style={{
+                                    width: '100%', height: '15%',
+                                    alignItems: 'center', justifyContent: 'center',
+                                    backgroundColor: Colors.main,
+                                    borderTopLeftRadius: 20,
+                                    borderTopRightRadius: 20,
+                                    flexDirection: 'row',
+                                    // borderBottomColor: Colors.newGrayFontColor, borderBottomWidth: 1
+                                }}>
+                                    <Text style={{
+                                        marginLeft: wide * 0.03, flex: 1, color: Colors.white, fontSize: wide * 0.055, fontWeight: '700', marginTop: wide * 0.01,
+                                    }}>Rating For Serviceman</Text>
+                                    <Ionicons name="ios-close" onPress={() => setRatings(false)} style={{ marginRight: wide * 0.02 }} size={34} color="#fff" />
+                                </View>
+                                <View style={{ width: '100%', height: '85%' }}>
+                                    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                                        <ScrollView showsVerticalScrollIndicator={false} bounces={false} keyboardShouldPersistTaps="handled">
+                                            <View style={{ marginHorizontal: wide * 0.05, marginVertical: wide * 0.05 }}>
+                                            <Text style={{ fontSize: wide * 0.06, color: Colors.main, fontWeight: 'bold' }}>Select Ratings</Text>
+                                            <Rating
+                                                   
+                                                   imageSize={wide*0.1}
+                                                   style={{ justifyContent: 'flex-start', alignItems: 'flex-start', marginTop: wide * 0.03 }}
+                                                   startingValue={0}
+                                                   onFinishRating={(rating)=>{
+                                                   
+                                                    setRatingsValue(rating)
+                                                   }}
+                                               />
+                                                <TextInput
+                                                    multiline={true}
+                                                    placeholder='Enter Comment'
+                                                    fontSize={wide * 0.05}
+                                                    style={{
+                                                        borderWidth: 1,
+                                                        height: wide * 0.6,
+                                                        paddingTop: wide * 0.05,
+                                                        paddingLeft: wide * 0.05,
+                                                        paddingRight: wide * 0.05,
+                                                        borderColor: Colors.main,
+                                                        marginTop: wide * 0.06,
+                                                        borderRadius: wide * 0.03
+
+                                                    }}
+                                                    onChangeText={text => setRatingsComment(text)}
+
+                                                />
+                                            </View>
+                                            {ratingsComment == false ?
+                                                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
+                                                    <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
+                                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Comment Can't Be Blank</Text>
+                                                    </View>
+                                                </View>
+                                                :
+                                                <></>
+                                            }
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    sendRatting()
+                                                }}
+                                                style={{
+                                                    backgroundColor: Colors.main,
+                                                    width: wide * 0.45,
+                                                    height: wide * 0.1,
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    alignSelf: 'center',
+                                                    borderRadius: wide * 0.1
+
+                                                }}
+                                            ><Text style={{ color: 'white', fontSize: wide * 0.055, fontWeight: 'bold' }}>Send</Text></TouchableOpacity>
+                                        </ScrollView>
+                                    </KeyboardAvoidingView>
+                                </View>
+
+                            </View>
+                            {/* </BlurView>  */}
+                        </View>
+                    </Modal>
+                    : null
+                }
+
 
                 {notDone === true ?
                     <Modal
@@ -312,7 +458,8 @@ const ServicesScreen = ({ navigation }) => {
                                     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
                                         <ScrollView showsVerticalScrollIndicator={false} bounces={false} keyboardShouldPersistTaps="handled">
                                             <View style={{ marginHorizontal: wide * 0.05, marginVertical: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.07, color: Colors.main, fontWeight: 'bold' }}>Why...?</Text>
+                                            
+                                                 <Text style={{ fontSize: wide * 0.07, color: Colors.main, fontWeight: 'bold' }}>Why...?</Text>
                                                 <TextInput
                                                     multiline={true}
                                                     placeholder='Enter Reason'
@@ -366,6 +513,7 @@ const ServicesScreen = ({ navigation }) => {
                     </Modal>
                     : null
                 }
+
                 {done === true ?
                     <Modal
                         animationType="fade"
@@ -439,11 +587,11 @@ const ServicesScreen = ({ navigation }) => {
                 }
 
 
-                <View style={{ marginHorizontal: wide * 0.045, marginTop: wide * 0.025 }}>
+                <View style={{ marginHorizontal: wide * 0.045, marginTop: wide * 0.025, height: '98%' }}>
                     {/* <ScrollView showsVerticalScrollIndicator={false} bounces={false}> */}
-                    <AppLoader visible={loading} />
-                    <View>
-                        <Text style={{ color: Colors.main, fontWeight: 'bold', fontSize: wide * 0.07, marginTop: wide * 0.05 }}>Your Valoration</Text>
+
+
+                    {/* <Text style={{ color: Colors.main, fontWeight: 'bold', fontSize: wide * 0.07, marginTop: wide * 0.05 }}>Your Valoration</Text>
                         <View style={{ flexDirection: 'row', marginHorizontal: wide * 0.07, marginVertical: wide * 0.025 }}>
                             <View style={{ flexDirection: 'row', flex: 1 }}>
                                 <Text style={{ fontSize: wide * 0.05, marginTop: wide * 0.02 }}>{ratings}</Text>
@@ -470,103 +618,148 @@ const ServicesScreen = ({ navigation }) => {
                                 }}
                             >View</Text>
                             </TouchableOpacity>
-                        </View>
+                        </View> */}
 
-                        {servicesData != null ?
-                            <FlatList
-                                data={servicesData}
-                                bounce={false}
-                                showsVerticalScrollIndicator={false}
-                                alwaysBounceVertical={false}
-                                style={{ marginTop: wide * 0.03 }}
-                                keyExtractor={item => item.id}
-                                ListFooterComponent={() => <View style={{ marginBottom: high * 0.15 }}></View>}
-                                renderItem={(item, index, arr) => {
-
-                                    return (
-                                        <View style={{ borderColor: Colors.main, borderBottomWidth: 0.4, marginTop: wide * 0.04 }}>
-                                            <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: wide * 0.03 }}>
-                                                <TouchableOpacity
-                                                    onPress={() => {
-
-                                                        Alert.alert(
-                                                            '',
-                                                            'This Job Is Done Or Not?',
-                                                            [
-                                                                {
-                                                                    text: 'Cancel', onPress: () => {
-                                                                        setNotDone(true)
-
-                                                                    }, style: 'destructive'
-                                                                },
-                                                                {
-                                                                    text: 'Done', onPress: () => {
-                                                                        setServicesID(item.item.id)
-                                                                        doneService(item.item.id)
-                                                                        
-                                                                    }
-                                                                },
-                                                                // {
-                                                                //     text: 'Cancel',
-                                                                //     onPress: () => console.log('Cancel Pressed'),
-                                                                //     style: 'destructive',
-                                                                //   },
-
-                                                            ],
-                                                            {
-                                                                cancelable: true,
-
-                                                            },
-                                                        );
-                                                        setServicesID(item.item.id)
-
-
-
-                                                    }}
-                                                    style={{ flex: 1 }}>
-                                                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                                                        <FastImage style={{ width: wide * 0.13, resizeMode: 'stretch', height: wide * 0.13, borderRadius: wide * 0.1, }} source={{ uri: api.Image_URL + item.item.customer_image }} />
-                                                        <View>
-                                                            <Text style={{ fontSize: wide * 0.05, fontWeight: 'bold', marginLeft: wide * 0.03 }}>{item.item.customer_name}</Text>
-                                                            <Text style={{ fontSize: wide * 0.04, marginLeft: wide * 0.03 }}>{item.item.sub_category}</Text>
-                                                        </View>
-                                                    </View>
-                                                </TouchableOpacity>
-                                                <TouchableOpacity
-                                                    onPress={() => navigation.navigate("ChatScreen", {
-                                                        services_data: item.item
-                                                    })}
-                                                    style={{
-                                                        backgroundColor: 'black',
-                                                        width: wide * 0.15,
-                                                        justifyContent: "center",
-                                                        alignItems: 'center',
-                                                        height: wide * 0.08,
-                                                        borderRadius: wide * 0.01,
-                                                    }}><Text
-                                                        style={{
-                                                            color: '#ffffff',
-                                                            fontWeight: 'bold',
-                                                            fontSize: wide * 0.04
-                                                        }}
-                                                    >Chat</Text>
-                                                </TouchableOpacity>
+                    {servicesData != null ?
+                        <FlatList
+                            data={servicesData}
+                            bounce={false}
+                            showsVerticalScrollIndicator={false}
+                            alwaysBounceVertical={false}
+                            style={{ marginTop: wide * 0.03 }}
+                            keyExtractor={item => item.id}
+                            ListFooterComponent={() => <View style={{ marginBottom: high * 0.15 }}></View>}
+                            renderItem={(item, index, arr) => {
+                                return (
+                                    <View style={{ marginTop: wide * 0.04 }}>
+                                        <View style={{ alignItems: 'center', paddingVertical: wide * 0.03, backgroundColor: 'white', borderRadius: wide * 0.02 }}>
+                                            <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.02 }}>
+                                                <Text style={{ marginRight: wide * 0.02, alignSelf: 'flex-start', fontSize: wide * 0.05, color: item.item.status == 'Complete' ? 'green' : 'orange', flex: 1, fontWeight: '600' }}>{item.item.status}</Text>
+                                                <Text style={{ marginRight: wide * 0.02, alignSelf: 'flex-end', fontSize: wide * 0.05, color: Colors.main, fontWeight: '600' }}>{item.item.date}</Text>
                                             </View>
+                                            <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
+                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Category</Text>
+                                                <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.category_name}</Text>
+                                            </View>
+                                            <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
+                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Sub Category</Text>
+                                                <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.sub_category}</Text>
+                                            </View>
+                                            <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
+                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Service Name</Text>
+                                                <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.name}</Text>
+                                            </View>
+                                            <View style={{ marginVertical: wide * 0.02, marginHorizontal: wide * 0.05, width: '100%' }}>
+                                                <Text style={{ alignSelf: 'center', fontSize: wide * 0.06, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Problem</Text>
+                                                <Text style={{ marginTop: wide * 0.02, marginHorizontal: wide * 0.05, alignSelf: 'center', fontSize: wide * 0.05, color: 'black', fontWeight: '400' }}>{item.item.problem}</Text>
+                                            </View>
+
+                                            {
+
+                                                item.item.status != "Complete" ?
+                                                item.item.status != "Not Done" ?
+                                                    item.item.status == "Offer Accept" ?
+
+
+                                                        <TouchableOpacity
+                                                            onPress={() => {
+                                                                Alert.alert(
+                                                                    '',
+                                                                    'This Job Is Done Or Not?',
+                                                                    [
+                                                                        {
+                                                                            text: 'Close', onPress: () => console.log('Cancel Pressed'), style: 'destructive'
+                                                                        },
+
+                                                                        {
+                                                                            text: 'Not Done', onPress: () => {
+                                                                                setNotDone(true)
+                                                                                setServicesID(item.item.id)
+
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            text: 'Done', onPress: () => {
+                                                                                setServicesID(item.item.id)
+                                                                                doneService(item.item.id)
+                                                                            }
+                                                                        },
+                                                                        // {
+                                                                        //     text: 'Cancel',
+                                                                        //     onPress: () => console.log('Cancel Pressed'),
+                                                                        //     style: 'destructive',
+                                                                        //   },
+                                                                    ],
+                                                                    {
+                                                                        cancelable: true,
+                                                                    },
+                                                                );
+                                                                setServicesID(item.item.id)
+                                                            }}
+                                                            style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                            <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Job Complete ?</Text>
+                                                        </TouchableOpacity>
+
+
+                                                        :
+                                                        <View style={{ flexDirection: 'row', }}>
+                                                            <TouchableOpacity
+                                                                onPress={() => {
+                                                                    navigation.navigate("MoreDetailsScreen", {
+                                                                        service_id: item.item.id,
+                                                                        min_price: item.item.min_price
+                                                                    })
+                                                                }}
+                                                                style={{ marginRight: wide * 0.06, marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                                <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Applied List</Text>
+                                                            </TouchableOpacity>
+                                                            <TouchableOpacity
+                                                                onPress={() => {
+                                                                    navigation.navigate("OfferScreen", {
+                                                                        service_id: item.item.id,
+                                                                        min_price: item.item.min_price
+                                                                    })
+                                                                }}
+                                                                style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                                <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Offer List</Text>
+                                                            </TouchableOpacity>
+                                                        </View>
+                                                    :
+                                                    <TouchableOpacity
+                                                            onPress={() => {
+                                                               setRatings(true)
+                                                                setServicesID(item.item.id)
+                                                            }}
+                                                            style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                            <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Give Ratings ?</Text>
+                                                        </TouchableOpacity>
+                                                    :
+                                                    <TouchableOpacity
+                                                            onPress={() => {
+                                                               setRatings(true)
+                                                                setServicesID(item.item.id)
+                                                            }}
+                                                            style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                            <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Give Ratings ?</Text>
+                                                        </TouchableOpacity>
+                                            }
                                         </View>
-                                    )
-                                }} />
+                                    </View>
+                                )
+                            }} />
 
 
-                            :
-                            <View style={{ height: '80%', alignItems: 'center', justifyContent: "center" }}>
-                                <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No Services Available</Text>
+                        :
+                        <View style={{ height: '98%', alignItems: 'center', justifyContent: "center" }}>
+                            <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No Services Available</Text>
 
 
-                            </View>
-                        }
-                    </View>
-
+                        </View>
+                    }
                 </View>
+                <AppLoader visible={loading} />
+
+
             </SafeAreaView >
             <View style={{}}>
                 <BottomNavigation navigation={navigation} checked='Services' />

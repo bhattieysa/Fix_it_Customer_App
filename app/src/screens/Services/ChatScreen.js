@@ -43,7 +43,10 @@ import FastImage from 'react-native-fast-image';
 
 const ChatScreen = ({ route, navigation }) => {
     // getting params
-    const services_data = route.params?.services_data
+    const customer_id = route.params?.customer_id
+    const service_id = route.params?.service_id
+    const min_price = route.params?.min_price
+    const name = route.params?.name
 
 
     const [loading, setLoading] = useState(false)
@@ -53,7 +56,7 @@ const ChatScreen = ({ route, navigation }) => {
     const [chat, setChat] = useState(null)
     const [image, setImage] = useState(null)
     const [imageBase64, setImageBase64] = useState(null)
-    const [price, setPrice] = useState(services_data.min_price)
+    const [price, setPrice] = useState(min_price)
     const [dealDoneDialog, setDealDoneDialog] = useState(false)
 
 
@@ -70,7 +73,7 @@ const ChatScreen = ({ route, navigation }) => {
 
             var formData = new FormData();
             formData.append('id', userData.login.data.id);
-            formData.append('customer_id', services_data.customer_id);
+            formData.append('customer_id', customer_id);
 
 
 
@@ -86,7 +89,7 @@ const ChatScreen = ({ route, navigation }) => {
             })
                 .then(function (response) {
 
-
+console.log(response.data)
                     if (response.data.data[0].error == 'true') {
                         setLoading(false)
                     } else {
@@ -116,7 +119,7 @@ const ChatScreen = ({ route, navigation }) => {
             var formData1 = new FormData();
 
             formData1.append('id', userData.login.data.id);
-            formData1.append('customer_id', services_data.customer_id);
+            formData1.append('customer_id', customer_id);
             axios({
                 method: 'POST',
                 url: api.UPDATECHATSEEN_URL,
@@ -159,7 +162,7 @@ const ChatScreen = ({ route, navigation }) => {
 
                             width: 500,
                             height: 500,
-                            cropping: true,
+                           
                             cropperCircleOverlay: true,
                             sortOrder: 'none',
                             compressImageMaxWidth: 1000,
@@ -178,12 +181,12 @@ const ChatScreen = ({ route, navigation }) => {
 
                                 setImage(image.path)
                                 setImageBase64(image.data)
-
+setLoading(true)
                                 const data = await AsyncStorage.getItem('user')
                                 const userData = JSON.parse(data)
                                 var formData = new FormData();
                                 formData.append('id', userData.login.data.id);
-                                formData.append('customer_id', services_data.customer_id);
+                                formData.append('customer_id', customer_id);
                                 formData.append('image', image.data);
 
 
@@ -199,7 +202,7 @@ const ChatScreen = ({ route, navigation }) => {
                                     }
                                 })
                                     .then(function (response) {
-                                        console.log(response.data.data)
+                                        console.log(response.data)
 
                                         if (response.data.data[0].error == 'true') {
                                             setLoading(false)
@@ -209,7 +212,7 @@ const ChatScreen = ({ route, navigation }) => {
                                         }
                                     })
                                     .catch(function (error) {
-                                        console.log("error1", error)
+                                        console.log("error111", error)
                                         setLoading(false)
                                     })
 
@@ -226,13 +229,47 @@ const ChatScreen = ({ route, navigation }) => {
                         ImagePicker.openCamera({
                             width: 500,
                             height: 500,
-                            cropping: true,
+                           
                             mediaType: 'photo',
                             includeBase64: true
-                        }).then(image => {
+                        }).then(async (image) => {
 
                             setImage(image.path)
                             setImageBase64(image.data)
+                            setLoading(true)
+                                const data = await AsyncStorage.getItem('user')
+                                const userData = JSON.parse(data)
+                                var formData = new FormData();
+                                formData.append('id', userData.login.data.id);
+                                formData.append('customer_id', customer_id);
+                                formData.append('image', image.data);
+
+
+
+                                axios({
+                                    method: 'POST',
+                                    url: api.UPLOADCHATIMAGR_URL,
+                                    data: formData,
+
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'multipart/form-data'
+                                    }
+                                })
+                                    .then(function (response) {
+                                        console.log(response.data)
+
+                                        if (response.data.data[0].error == 'true') {
+                                            setLoading(false)
+                                        } else {
+                                            setLoading(false)
+
+                                        }
+                                    })
+                                    .catch(function (error) {
+                                        console.log("error111", error)
+                                        setLoading(false)
+                                    })
 
                         });
                     }
@@ -259,7 +296,7 @@ const ChatScreen = ({ route, navigation }) => {
 
 
         formData.append('id', userData.login.data.id);
-        formData.append('customer_id', services_data.customer_id);
+        formData.append('customer_id',customer_id);
         formData.append('message', message);
         setLoading(true)
         axios({
@@ -280,7 +317,7 @@ const ChatScreen = ({ route, navigation }) => {
                 } else {
                     setLoading(false)
                     setChat(response.data.data)
-                    setMessage("hi")
+                    setMessage("")
                 }
             })
             .catch(function (error) {
@@ -292,7 +329,7 @@ const ChatScreen = ({ route, navigation }) => {
     const finalize = async () => {
 
 
-        if (price < services_data.min_price) {
+        if (price < min_price) {
             Alert.alert(
                 '',
                 'Price can not be less than minimum pr',
@@ -301,7 +338,7 @@ const ChatScreen = ({ route, navigation }) => {
         }
 
         var formData1 = new FormData();
-        formData1.append('services_id', services_data.id);
+        formData1.append('services_id', service_id);
         formData1.append('price', price);
 
         axios({
@@ -459,7 +496,7 @@ const ChatScreen = ({ route, navigation }) => {
             }
             <SafeAreaView style={{ flex: 1 }}>
                 {/* <ScrollView showsVerticalScrollIndicator={false} bounces={false} keyboardShouldPersistTaps="handled"> */}
-                <View style={{ flexDirection: 'row', marginHorizontal: wide * 0.07 }}>
+                <View style={{ flexDirection: 'row', marginHorizontal: wide * 0.07}}>
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 35, height: 35, justifyContent: 'center', alignItems: 'center' }}>
                             <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -467,8 +504,8 @@ const ChatScreen = ({ route, navigation }) => {
                             </Svg>
                         </TouchableOpacity>
                     </View>
-                    <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
-                        <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>{services_data.customer_name}</Text>
+                    <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15,marginTop:wide*0.025 }}>
+                        <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>{name}</Text>
                     </View>
                     <View>
                         <TouchableOpacity
@@ -528,15 +565,15 @@ const ChatScreen = ({ route, navigation }) => {
                                 {item.item.image == null ?
                                     <View>
                                         <Text style={{ marginTop: wide * 0.05, alignSelf: 'center' }}> {item.item.time}</Text>
-                                        <View style={{ width: '80%', alignSelf: item.item.sender == 'ServiceMan' ? 'flex-end' : 'flex-start', marginTop: wide * 0.025 }}>
-                                            <Text style={{ overflow: "hidden", alignSelf: item.item.sender == 'ServiceMan' ? 'flex-end' : 'flex-start', borderRadius: wide * 0.03, backgroundColor: Colors.main, fontSize: wide * 0.05, color: 'white', padding: wide * 0.02, }}>{item.item.message}</Text>
+                                        <View style={{ width: '80%', alignSelf: item.item.sender == 'ServiceMan' ? 'flex-start' : 'flex-end', marginTop: wide * 0.025 }}>
+                                            <Text style={{ overflow: "hidden", alignSelf: item.item.sender == 'ServiceMan' ? 'flex-start' : 'flex-end', borderRadius: wide * 0.03, backgroundColor: Colors.main, fontSize: wide * 0.05, color: 'white', padding: wide * 0.02, }}>{item.item.message}</Text>
                                         </View>
                                     </View>
                                     :
                                     <View>
                                         <Text style={{ marginTop: wide * 0.05, alignSelf: 'center' }}> {item.item.time}</Text>
                                         <FastImage
-                                            style={{ alignSelf: item.item.sender == 'ServiceMan' ? 'flex-end' : 'flex-start', width: wide * 0.5, height: wide * 0.5, borderRadius: wide * 0.02, marginBottom: wide * 0.02, marginTop: wide * 0.03 }}
+                                            style={{ alignSelf: item.item.sender == 'ServiceMan' ? 'flex-start' : 'flex-end', width: wide * 0.5, height: wide * 0.5, borderRadius: wide * 0.02, marginBottom: wide * 0.02, marginTop: wide * 0.03 }}
                                             source={{ uri: api.Image_URL + item.item.image }}
                                         />
 

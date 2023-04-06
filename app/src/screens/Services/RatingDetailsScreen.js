@@ -42,7 +42,7 @@ import FastImage from 'react-native-fast-image';
 
 const RatingDetailsScreen = ({ route, navigation }) => {
   // getting params
-  const data = route.params?.data
+  const id = route.params?.id
 
   const [loading, setLoading] = useState(false)
   const [ratingsData, setRatingsData] = useState(null)
@@ -62,7 +62,7 @@ const RatingDetailsScreen = ({ route, navigation }) => {
 
       var formData = new FormData();
 
-      formData.append('id', userData.login.data.id);
+      formData.append('id', id);
       setLoading(true)
       axios({
         method: 'POST',
@@ -75,7 +75,7 @@ const RatingDetailsScreen = ({ route, navigation }) => {
         }
       })
         .then(function (response) {
-          
+          console.log(response.data)
           if (response.data.data[0].error == 'true') {
             setLoading(false)
 
@@ -125,7 +125,7 @@ const RatingDetailsScreen = ({ route, navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
-            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Your Valoration</Text>
+            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Customer Valoration</Text>
           </View>
 
         </View>
@@ -147,23 +147,32 @@ const RatingDetailsScreen = ({ route, navigation }) => {
               renderItem={(item, index, arr) => {
                 return (
                   <View style={{ marginTop: wide * 0.04,backgroundColor:'white',marginHorizontal:wide*0.08,borderRadius:wide*0.02 }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: wide * 0.03,marginHorizontal:wide*0.03 }}>
-                      <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                        <FastImage style={{ width: wide * 0.13, resizeMode: 'stretch', height: wide * 0.13, borderRadius: wide * 0.1, }} source={{ uri: api.Image_URL + item.item.customer_image }} />
-                        <View style={{marginLeft:wide*0.03}}>
-                          <Text style={{ fontSize: wide * 0.05, fontWeight: 'bold', }}>{item.item.customer_name}</Text>
-                          <Rating
+                    <View style={{  paddingVertical: wide * 0.03,marginHorizontal:wide*0.03 }}>
+                    <View style={{ alignItems: 'center', paddingVertical: wide * 0.03, backgroundColor: 'white', borderRadius: wide * 0.02 }}>
+
+                                            <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
+                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Category</Text>
+                                                <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.category}</Text>
+                                            </View>
+                                            <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
+                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Sub Category</Text>
+                                                <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.sub_category}</Text>
+                                            </View>
+                                            <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
+                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Service Name</Text>
+                                                <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.name}</Text>
+                                            </View>
+
+                                            <Rating
                             readonly={true}
-                            imageSize={20}
+                            imageSize={25}
                             style={{justifyContent:'flex-start',alignItems:'flex-start',marginVertical:wide*0.03 }}
                             startingValue={item.item.ratings}
                           />
-                          <Text style={{fontSize:wide*0.045}}>{item.item.comments}</Text>
-
-                        </View>
-                      
-                      </View>
-                      <Text style={{color:Colors.main,fontSize:wide*.045,fontWeight:'bold'}}>#{item.item.id}</Text>
+                           <Text style={{fontSize:wide*0.05}}>{item.item.comments}</Text>
+                                        </View>
+           
+                     
 
                     </View>
                   </View>
