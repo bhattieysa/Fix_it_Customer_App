@@ -48,7 +48,8 @@ const SignupScreen = ({ route, navigation }) => {
   const [typeOfAccount, setTypeOfAccount] = useState(null)
   const [accountNumber, setAccountNumber] = useState(null)
   const [bankName, setBankName] = useState(null)
-
+  const [confirmPassword, setConfirmPassword] = useState(null)
+  
 
   let wide = Layout.width;
   let high = Layout.height;
@@ -168,6 +169,11 @@ const SignupScreen = ({ route, navigation }) => {
       setPassword(false)
       return
     }
+
+    if (password !=confirmPassword) {
+      setConfirmPassword(false)
+      return
+    }
     if (experience == null) {
       setExperience(false)
       return
@@ -185,13 +191,13 @@ const SignupScreen = ({ route, navigation }) => {
       return
     }
 
-    if (backgroundCheckCertificates == null) {
-      Alert.alert(
-        '',
-        'Please Upload Background Check Certificate',
-      );
-      return
-    }
+    // if (backgroundCheckCertificates == null) {
+    //   Alert.alert(
+    //     '',
+    //     'Please Upload Background Check Certificate',
+    //   );
+    //   return
+    // }
     // if (professionCertificates == null) {
     //   Alert.alert(
     //     '',
@@ -213,13 +219,13 @@ const SignupScreen = ({ route, navigation }) => {
     formData.append('experience', experience);
     formData.append('address', address);
     formData.append('image', imageBase64);
-    backgroundCheckCertificates.map((file, index) => (
-      formData.append('background', {
-        uri: file.uri,
-        type: file.type,
-        name: file.name,
-      })
-    ))
+    // backgroundCheckCertificates.map((file, index) => (
+    //   formData.append('background', {
+    //     uri: file.uri,
+    //     type: file.type,
+    //     name: file.name,
+    //   })
+    // ))
     axios({
       method: 'POST',
       url: api.SIGNUP_URL,
@@ -236,7 +242,7 @@ const SignupScreen = ({ route, navigation }) => {
           setLoading(false)
           Alert.alert(
             '',
-            'Signup Successful',
+            'Signup Successful & for security of our clients and workers, your account is being review, please wait and we will let you know when it will be ready to log in in a few moment please',
           );
           navigation.navigate('LoginScreen')
 
@@ -264,7 +270,7 @@ const SignupScreen = ({ route, navigation }) => {
             <View style={{ marginHorizontal: wide * 0.07, marginVertical: wide * 0.1 }}>
 
               <Image
-                style={{ width: wide * 0.8, height: wide * 0.4, resizeMode: 'cover', alignSelf: 'center' }}
+                style={{ width: wide * 0.65, height: wide * 0.25, resizeMode: 'cover', alignSelf: 'center' }}
                 source={require("../../Images/logo.png")}
               />
               <Text style={{ alignSelf: 'center', fontSize: wide * 0.06, color: '#000000', fontWeight: 'bold' }}>Create Your Account</Text>
@@ -344,6 +350,21 @@ const SignupScreen = ({ route, navigation }) => {
                 :
                 <></>
               }
+                            <View style={{ marginTop: wide * 0.05 }} >
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Confirm Password</Text>
+                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
+                  <TextInput secureTextEntry={true} onChangeText={text => setConfirmPassword(text)} placeholder='Enter Confirm Password' style={{ marginHorizontal: wide * 0.05 }} />
+                </View>
+              </View>
+              {confirmPassword==false ?
+                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
+                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Password Not Matched</Text>
+                  </View>
+                </View>
+                :
+                <></>
+              }
 
               <View style={{ marginTop: wide * 0.05 }} >
                 <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Address</Text>
@@ -386,11 +407,11 @@ const SignupScreen = ({ route, navigation }) => {
               </View>
 
 
-              <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
+              {/* <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
                 <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Certificates</Text>
-              </View>
+              </View> */}
 
-              <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: wide * 0.07 }}>
+              {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: wide * 0.07 }}>
 
                 <TouchableOpacity onPress={() => BackGroundCheck()}>
                   <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -403,7 +424,7 @@ const SignupScreen = ({ route, navigation }) => {
                     <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', alignSelf: 'center' }}>Background Check</Text>
                   </View>
                 </TouchableOpacity>
-              </View>
+              </View> */}
               <TouchableOpacity onPress={() => Signup()} style={{ marginTop: wide * 0.1, justifyContent: 'center', alignItems: 'center' }} >
                 <View style={{ backgroundColor: Colors.main, height: wide * 0.14, borderRadius: wide * 0.1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
                   <View style={{ flex: 3, alignItems: 'center', }}>

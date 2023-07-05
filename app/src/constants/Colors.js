@@ -6,6 +6,6 @@ export default {
     bg: "#f2f3f5",
     statusbar: '#eeeeee',
     // main:'#39a5ed'
-    main:'#EF8496'
+    main:'#72B2DD'
     
 }

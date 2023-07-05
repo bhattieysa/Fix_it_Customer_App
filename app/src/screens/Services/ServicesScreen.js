@@ -632,26 +632,33 @@ const ServicesScreen = ({ navigation }) => {
                             renderItem={(item, index, arr) => {
                                 return (
                                     <View style={{ marginTop: wide * 0.04 }}>
-                                        <View style={{ alignItems: 'center', paddingVertical: wide * 0.03, backgroundColor: 'white', borderRadius: wide * 0.02 }}>
+                                        <View style={{ alignItems: 'center', paddingVertical: wide * 0.02, backgroundColor: 'white', borderRadius: wide * 0.02 }}>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.02 }}>
-                                                <Text style={{ marginRight: wide * 0.02, alignSelf: 'flex-start', fontSize: wide * 0.05, color: item.item.status == 'Complete' ? 'green' : 'orange', flex: 1, fontWeight: '600' }}>{item.item.status}</Text>
-                                                <Text style={{ marginRight: wide * 0.02, alignSelf: 'flex-end', fontSize: wide * 0.05, color: Colors.main, fontWeight: '600' }}>{item.item.date}</Text>
+                                                <Text style={{ marginLeft: wide * 0.02, alignSelf: 'flex-start', fontSize: wide * 0.045, color: item.item.status == 'Complete' ? 'green' : 'orange', flex: 1, fontWeight: '600' }}>{item.item.status}</Text>
+                                                <Text style={{ marginRight: wide * 0.02, alignSelf: 'flex-end', fontSize: wide * 0.045, color: Colors.main, fontWeight: '600' }}>{item.item.date}</Text>
+                                            </View>
+                                            <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.045 }}>
+                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Category</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.category_name}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Category</Text>
-                                                <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.category_name}</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Sub Category</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.sub_category}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Sub Category</Text>
-                                                <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.sub_category}</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Service Name</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.name}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Service Name</Text>
-                                                <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.name}</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Address</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.location}</Text>
                                             </View>
-                                            <View style={{ marginVertical: wide * 0.02, marginHorizontal: wide * 0.05, width: '100%' }}>
-                                                <Text style={{ alignSelf: 'center', fontSize: wide * 0.06, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Problem</Text>
-                                                <Text style={{ marginTop: wide * 0.02, marginHorizontal: wide * 0.05, alignSelf: 'center', fontSize: wide * 0.05, color: 'black', fontWeight: '400' }}>{item.item.problem}</Text>
+                                            <View style={{ marginVertical: wide * 0.02, marginHorizontal: wide * 0.045, width: '100%' }}>
+                                                <Text style={{ alignSelf: 'center', fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Problem</Text>
+                                                <Text
+                                                ellipsizeMode='tail' 
+                                                numberOfLines={1}
+                                                style={{ marginTop: wide * 0.02, marginHorizontal: wide * 0.045, alignSelf: 'center', fontSize: wide * 0.05, color: 'black', fontWeight: '400'  }}>{item.item.problem}</Text>
                                             </View>
 
                                             {
@@ -696,8 +703,8 @@ const ServicesScreen = ({ navigation }) => {
                                                                 );
                                                                 setServicesID(item.item.id)
                                                             }}
-                                                            style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
-                                                            <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Job Complete ?</Text>
+                                                            style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.3, height: wide * 0.09, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                            <Text style={{ color: 'white', fontSize: wide * 0.035, fontWeight: '600' }}>Job Complete</Text>
                                                         </TouchableOpacity>
 
 
@@ -710,18 +717,19 @@ const ServicesScreen = ({ navigation }) => {
                                                                         min_price: item.item.min_price
                                                                     })
                                                                 }}
-                                                                style={{ marginRight: wide * 0.06, marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
-                                                                <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Applied List</Text>
+                                                                style={{ marginRight: wide * 0.06, marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.3, height: wide * 0.09, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                                <Text style={{ color: 'white', fontSize: wide * 0.035, fontWeight: '600' }}>Applied List ({item.item.apply})</Text>
                                                             </TouchableOpacity>
                                                             <TouchableOpacity
                                                                 onPress={() => {
                                                                     navigation.navigate("OfferScreen", {
                                                                         service_id: item.item.id,
-                                                                        min_price: item.item.min_price
+                                                                        min_price: item.item.min_price,
+                                                                        services_name:item.item.name
                                                                     })
                                                                 }}
-                                                                style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
-                                                                <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Offer List</Text>
+                                                                style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.3, height: wide * 0.09, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                                <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Offer List ({item.item.offer})</Text>
                                                             </TouchableOpacity>
                                                         </View>
                                                     :

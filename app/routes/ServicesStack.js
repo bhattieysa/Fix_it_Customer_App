@@ -6,6 +6,8 @@ import RatingDetailsScreen from '../src/screens/Services/RatingDetailsScreen';
 import ChatScreen from '../src/screens/Services/ChatScreen';
 import MoreDetailsScreen from '../src/screens/Services/MoreDetailsScreen';
 import OfferScreen from '../src/screens/Services/OfferScreen';
+import PaymentScreenWebView from '../src/screens/Services/PaymentScreenWebView';
+
 
 
 
@@ -19,6 +21,8 @@ const ServicesStack = () => {
       <Stack.Screen name="ChatScreen"  component={ChatScreen} />
       <Stack.Screen name="MoreDetailsScreen"  component={MoreDetailsScreen} />
       <Stack.Screen name="OfferScreen"  component={OfferScreen} />
+      <Stack.Screen name="PaymentScreenWebView"  component={PaymentScreenWebView} />
+     
      
 
 

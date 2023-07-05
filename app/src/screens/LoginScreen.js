@@ -122,38 +122,39 @@ const LoginScreen =  ({ navigation }) => {
 
             <View style={{ marginHorizontal: wide * 0.07, marginTop: wide * 0.1 }}>
               <Image
-                style={{ width: wide * 0.8, height: wide * 0.4, alignSelf: 'center' }}
+                style={{ width: wide * 0.65, height: wide * 0.25, alignSelf: 'center' }}
                 source={require("../../Images/logo.png")}
               />
-              <Text style={{ marginVertical: wide * 0.09, alignSelf: 'center', fontSize: wide * 0.06, fontWeight: 'bold', color: '#000000' }}>Sign In To Your Account</Text>
+              <Text style={{ marginVertical: wide * 0.09, alignSelf: 'center', fontSize: wide * 0.06, fontWeight: 'bold', color: '#000000' }}>
+Iniciar sesión en su cuenta</Text>
 
 
 
               <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Email Address</Text>
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Dirección de correo electrónico</Text>
                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput onChangeText={text => setEmailAddress(text)} placeholder='Enter Email' style={{ marginHorizontal: wide * 0.05 }} />
+                  <TextInput onChangeText={text => setEmailAddress(text)} placeholder='Ingrese correo electrónico' style={{ marginHorizontal: wide * 0.05 }} />
                 </View>
               </View>
               {emailAddress == false ?
                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                   <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Email Can't Be Blank</Text>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El correo electrónico no puede estar en blanco</Text>
                   </View>
                 </View>
                 :
                 <></>
               }
               <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Password</Text>
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Contraseña</Text>
                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput secureTextEntry={true} onChangeText={text => setPassword(text)} placeholder='Enter Password' style={{ marginHorizontal: wide * 0.05 }} />
+                  <TextInput secureTextEntry={true} onChangeText={text => setPassword(text)} placeholder='Introducir la contraseña' style={{ marginHorizontal: wide * 0.05 }} />
                 </View>
               </View>
               {password == false ?
                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                   <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Password Can't Be Blank</Text>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >La contraseña no puede estar en blanco</Text>
                   </View>
                 </View>
                 :
@@ -164,16 +165,16 @@ const LoginScreen =  ({ navigation }) => {
                 style={{ marginTop: wide * 0.1, justifyContent: 'center', alignItems: 'center' }} >
                 <View style={{ backgroundColor: Colors.main, height: wide * 0.14, borderRadius: wide * 0.1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
                   <View style={{ flex: 3, alignItems: 'center', }}>
-                    <Text style={{ color: Colors.white, fontSize: wide * 0.04, fontWeight: 'bold' }}>LOGIN</Text>
+                    <Text style={{ color: Colors.white, fontSize: wide * 0.04, fontWeight: 'bold' }}>ACCESO</Text>
                   </View>
 
                 </View>
               </TouchableOpacity>
               <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: wide * 0.04 }}>
-                <Text style={{ fontSize: wide * 0.039, color: '#000000', }}>Don't have a Account?</Text>
+                <Text style={{ fontSize: wide * 0.039, color: '#000000', }}>No tienes una cuenta?</Text>
                 <TouchableOpacity onPress={() => {
                   navigation.navigate('SignupScreen')
-                }}><Text style={{ marginTop: -wide * 0.005, fontSize: wide * 0.043, marginLeft: 5, color: Colors.main, fontWeight: 'bold' }} >Sign Up</Text></TouchableOpacity>
+                }}><Text style={{ marginTop: -wide * 0.005, fontSize: wide * 0.043, marginLeft: 5, color: Colors.main, fontWeight: 'bold' }} >Inscribirse</Text></TouchableOpacity>
               </View>
 
             </View>

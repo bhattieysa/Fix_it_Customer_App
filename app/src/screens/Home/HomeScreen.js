@@ -136,10 +136,10 @@ const HomeScreen = ({ navigation }) => {
 
           <View >
             <View style={{ flexDirection: 'row' }}>
-              <Text style={{ flex: 1, color: Colors.main, fontWeight: 'bold', fontSize: wide * 0.08 }}>Hi, {userName}</Text>
+              <Text style={{ flex: 1,   fontSize: wide * 0.09 ,marginRight:wide*.03}}>Hi, {userName}</Text>
               <View style={{}}>
                 <Image
-                  style={{ width: wide * 0.45, height: wide * 0.22, resizeMode: 'stretch', alignSelf: 'center' }}
+                  style={{ width: wide * 0.3, height: wide * 0.16, resizeMode: 'stretch', alignSelf: 'center' }}
                   source={require('../../../Images/logo.png')} />
               </View>
             </View>
@@ -156,7 +156,7 @@ const HomeScreen = ({ navigation }) => {
           
         }}
 
-                showsVerticalScrollIndicator={false}
+             
                 alwaysBounceVertical={false}
                 style={{ marginTop: wide * 0.03,marginHorizontal:wide*0.02, }}
                 keyExtractor={item => item.id}
@@ -174,7 +174,7 @@ const HomeScreen = ({ navigation }) => {
                             "id":item.item.id,
                           })
                         }}
-                        style={{ marginRight: wide * 0.06, width: wide * 0.20}} >
+                        style={{ justifyContent:"center" ,alignItems:'center', width: wide * 0.25, }} >
                        
                         <FastImage
                           resizeMode={FastImage.resizeMode.stretch}

@@ -44,6 +44,7 @@ const OfferScreen = ({ route, navigation }) => {
     // getting params
     const service_id = route.params?.service_id
     const min_price = route.params?.min_price
+    const services_name = route.params?.services_name
 
 
     const [loading, setLoading] = useState(false)
@@ -83,7 +84,7 @@ const OfferScreen = ({ route, navigation }) => {
 
                     } else {
                         setLoading(false)
-
+console.log(response.data.data.length)
                         setServiceMan(response.data.data)
                     }
                 })
@@ -187,8 +188,21 @@ const OfferScreen = ({ route, navigation }) => {
                                                     </View>
                                                 </View>
                                                 <TouchableOpacity
-                                                    onPress={() => {
-                                                        AcceptOffer(item.item.service_apply_id)
+                                                    onPress={async() => {
+
+                                                        const data = await AsyncStorage.getItem('user')
+        const userData = JSON.parse(data)
+                                                        // AcceptOffer(item.item.service_apply_id)
+                                                        navigation.navigate("PaymentScreenWebView",{
+                                                            service_id:item.item.service_apply_id,
+                                                            price:item.item.price,
+                                                            services_name:services_name,
+                                                            person_name:item.item.name,
+                                                            person_id:item.item.id,
+                                                            
+                                                            user_id:userData.login.data.id
+                                                            
+                                                        })
                                                     }}
                                                     style={{ borderRadius: wide * 0.02, justifyContent: 'center', alignItems: 'center', width: wide * 0.05, flex: 0.7, backgroundColor: Colors.main, height: wide * 0.08, alignSelf: 'center', marginRight: wide * 0.02 }}>
                                                     <Text style={{ color: 'white', fontWeight: '600', fontSize: wide * 0.035 }}>Accept</Text>

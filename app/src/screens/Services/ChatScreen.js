@@ -504,22 +504,23 @@ setLoading(true)
                             </Svg>
                         </TouchableOpacity>
                     </View>
-                    <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15,marginTop:wide*0.025 }}>
+                    <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
                         <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>{name}</Text>
                     </View>
-                    <View>
-                        <TouchableOpacity
-                            onPress={() => {
-                                setDealDoneDialog(true)
-                            }}
-                        >
-                            <Svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                                width="64.000000pt" height="64.000000pt" viewBox="0 0 64.000000 64.000000"
-                                preserveAspectRatio="xMidYMid meet">
+                    {/* {min_price != null ?
+                        <View>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    setDealDoneDialog(true)
+                                }}
+                            >
+                                <Svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                    width="64.000000pt" height="64.000000pt" viewBox="0 0 64.000000 64.000000"
+                                    preserveAspectRatio="xMidYMid meet">
 
-                                <G transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
-                                    fill={Colors.main} stroke="none">
-                                    <Path d="M548 403 c-28 -10 -48 -23 -51 -35 -3 -10 -14 -18 -25 -18 -12 0 -24
+                                    <G transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)"
+                                        fill={Colors.main} stroke="none">
+                                        <Path d="M548 403 c-28 -10 -48 -23 -51 -35 -3 -10 -14 -18 -25 -18 -12 0 -24
 -5 -28 -12 -5 -8 3 -9 29 -5 40 6 37 11 63 -97 l7 -29 -47 6 c-46 7 -64 -6
 -26 -18 21 -7 28 -35 9 -35 -7 0 -34 14 -61 31 -28 16 -55 28 -61 26 -7 -2 12
 -19 41 -37 81 -51 63 -72 -22 -24 -25 14 -46 21 -46 15 0 -6 18 -21 40 -33 22
@@ -527,14 +528,14 @@ setLoading(true)
 -29 42 -24 56 -49 27 -49 -8 0 -15 -4 -15 -10 0 -5 5 -10 11 -10 13 0 149 137
 149 150 0 14 37 13 42 -1 3 -8 15 -9 36 -4 39 8 43 28 5 23 -26 -3 -27 0 -49
 85 -12 48 -19 89 -15 91 3 2 25 9 49 15 23 7 42 16 42 21 0 13 -15 11 -72 -7z"/>
-                                    <Path d="M20 392 c0 -5 21 -15 48 -24 26 -8 46 -19 46 -24 -1 -5 -4 -21 -8
+                                        <Path d="M20 392 c0 -5 21 -15 48 -24 26 -8 46 -19 46 -24 -1 -5 -4 -21 -8
 -36 -4 -16 -2 -28 4 -28 5 0 12 11 16 24 5 21 9 23 35 16 16 -5 44 -6 63 -3
 48 8 55 -13 12 -34 -42 -20 -47 -48 -11 -65 19 -8 29 -8 47 3 15 9 47 14 91
 13 53 -1 65 1 57 11 -13 16 -126 13 -159 -4 -18 -10 -26 -10 -35 -1 -8 9 -8
 14 1 17 7 2 31 17 55 33 33 23 55 30 91 30 30 0 46 4 42 10 -8 13 -102 13
 -110 0 -4 -7 -13 -6 -27 1 -11 6 -35 9 -52 6 -42 -7 -86 2 -86 17 0 7 -24 20
 -53 29 -61 19 -67 20 -67 9z"/>
-                                    <Path d="M84 218 c-8 -39 -12 -43 -37 -40 -37 5 -34 -15 4 -23 20 -5 34 -3 39
+                                        <Path d="M84 218 c-8 -39 -12 -43 -37 -40 -37 5 -34 -15 4 -23 20 -5 34 -3 39
 4 12 20 42 1 36 -22 -5 -22 48 -87 71 -87 7 0 33 -7 58 -16 36 -12 50 -13 61
 -3 22 18 17 41 -15 72 -38 35 -55 34 -82 -4 -15 -22 -25 -27 -32 -20 -13 13
 24 68 43 63 7 -1 10 3 8 10 -3 7 -11 13 -19 14 -8 0 -21 4 -30 8 -10 4 -23 6
@@ -542,12 +543,15 @@ setLoading(true)
 -10 -12 -44 -28 -44 -18 0 -18 5 -5 31 11 19 22 24 33 13z m87 -53 c0 -21 -13
 -41 -26 -41 -17 0 -18 22 -2 38 14 14 28 16 28 3z m40 -35 c0 -16 -18 -31 -27
 -22 -8 8 5 36 17 36 5 0 10 -6 10 -14z"/>
-                                </G>
-                            </Svg>
+                                    </G>
+                                </Svg>
 
-                        </TouchableOpacity>
-                        <Text style={{alignSelf:'center', color: Colors.main, fontSize: wide * 0.045, fontWeight: 'bold' }}>Deal</Text>
-                    </View>
+                            </TouchableOpacity>
+                            <Text style={{ alignSelf: 'center', color: Colors.main, fontSize: wide * 0.045, fontWeight: 'bold' }}>Deal</Text>
+                        </View>
+                        :
+                        <></>
+                    } */}
                 </View>
                 <FlatList
                     data={chat}

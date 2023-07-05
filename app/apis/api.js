@@ -1,7 +1,4 @@
 export const BASE_URL = "https://fixitchile.com/CustomerApp/"
-
-
-
 export const Image_URL = 'https://fixitchile.com/';
 export const Image_Admin_URL = 'https://fixitchile.com/adminpanel/images/';
 export const CATEGORY_URL = BASE_URL+'getCategories.php';
@@ -35,12 +32,7 @@ export const SERVICEAPPLY_URL = BASE_URL+'serviceApply.php';
 export const SERVICEOFFER_URL = BASE_URL+'serviceOffer.php';
 export const SERVICEACCEPTOFFER_URL = BASE_URL+'serviceAcceptOffer.php';
 export const GIVERATINGS_URL = BASE_URL+'giveRatings.php';
-
-
-
-
-
-
+export const PAYMENTFINAL_URL = BASE_URL+'payment/text.php';
 
 
 
