@@ -68,8 +68,7 @@ const LoginScreen =  ({ navigation }) => {
       data: formData,
       
     
-     
-
+    
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'multipart/form-data'
@@ -82,7 +81,7 @@ const LoginScreen =  ({ navigation }) => {
           setLoading(false)
           Alert.alert(
             '',
-            'Login Successful',
+            'Inicio de sesión exitoso',
           );
 
          await  AsyncStorage.setItem('user',JSON.stringify(response.data))
@@ -97,7 +96,7 @@ const LoginScreen =  ({ navigation }) => {
           setLoading(false)
           Alert.alert(
             '',
-            'Failed To Login',
+            'Error al iniciar sesión',
           );
         }
       })
@@ -125,8 +124,7 @@ const LoginScreen =  ({ navigation }) => {
                 style={{ width: wide * 0.65, height: wide * 0.25, alignSelf: 'center' }}
                 source={require("../../Images/logo.png")}
               />
-              <Text style={{ marginVertical: wide * 0.09, alignSelf: 'center', fontSize: wide * 0.06, fontWeight: 'bold', color: '#000000' }}>
-Iniciar sesión en su cuenta</Text>
+              <Text style={{ marginVertical: wide * 0.09, alignSelf: 'center', fontSize: wide * 0.06, fontWeight: 'bold', color: '#000000' }}>Inicie sesión en su cuenta</Text>
 
 
 
@@ -165,7 +163,7 @@ Iniciar sesión en su cuenta</Text>
                 style={{ marginTop: wide * 0.1, justifyContent: 'center', alignItems: 'center' }} >
                 <View style={{ backgroundColor: Colors.main, height: wide * 0.14, borderRadius: wide * 0.1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
                   <View style={{ flex: 3, alignItems: 'center', }}>
-                    <Text style={{ color: Colors.white, fontSize: wide * 0.04, fontWeight: 'bold' }}>ACCESO</Text>
+                    <Text style={{ color: Colors.white, fontSize: wide * 0.04, fontWeight: 'bold' }}>Ingresar</Text>
                   </View>
 
                 </View>
@@ -174,7 +172,7 @@ Iniciar sesión en su cuenta</Text>
                 <Text style={{ fontSize: wide * 0.039, color: '#000000', }}>No tienes una cuenta?</Text>
                 <TouchableOpacity onPress={() => {
                   navigation.navigate('SignupScreen')
-                }}><Text style={{ marginTop: -wide * 0.005, fontSize: wide * 0.043, marginLeft: 5, color: Colors.main, fontWeight: 'bold' }} >Inscribirse</Text></TouchableOpacity>
+                }}><Text style={{ marginTop: -wide * 0.005, fontSize: wide * 0.043, marginLeft: 5, color: Colors.main, fontWeight: 'bold' }} >Inicie</Text></TouchableOpacity>
               </View>
 
             </View>
