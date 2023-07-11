@@ -102,7 +102,7 @@ console.log(response.data)
                                         <Text style={{ fontSize: wide * 0.08, color: '#ffffff', fontWeight: 'bold' }}>{userDetails.name}</Text>
                                         <Text style={{ fontSize: wide * 0.045, color: '#ffffff' }}>{userDetails.email}</Text>
                                         <Text style={{ fontSize: wide * 0.045, color: '#ffffff' }}>{userDetails.phone}</Text>
-                                        <TouchableOpacity onPress={() => logoutUser()} style={{ marginTop: wide * 0.01, backgroundColor: 'black', paddingHorizontal: wide * 0.07, paddingVertical: wide * 0.015, borderRadius: wide * 0.015 }}><Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: wide * 0.035 }}>Logout</Text></TouchableOpacity>
+                                        <TouchableOpacity onPress={() => logoutUser()} style={{ marginTop: wide * 0.01, backgroundColor: 'black', paddingHorizontal: wide * 0.07, paddingVertical: wide * 0.015, borderRadius: wide * 0.015 }}><Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: wide * 0.035 }}>Cerrar sesión</Text></TouchableOpacity>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', borderColor: Colors.main, borderWidth: 2, marginTop: wide * 0.05, marginHorizontal: wide * 0.05, borderRadius: wide * 0.02, padding: wide * 0.02 }}>
@@ -111,33 +111,33 @@ console.log(response.data)
 
                                 </View>
                                 <View style={{ flexDirection: 'row', borderColor: Colors.main, borderWidth: 2, marginTop: wide * 0.05, marginHorizontal: wide * 0.05, borderRadius: wide * 0.02, padding: wide * 0.02 }}>
-                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Address:</Text>
+                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >DIRECCIÓN:</Text>
                                     <Text style={{ fontSize: wide * 0.05, marginHorizontal: wide * 0.02, flex: 1 }}>{userDetails.address}</Text>
 
                                 </View>
                                 <View style={{ flexDirection: 'row', borderColor: Colors.main, borderWidth: 2, marginTop: wide * 0.05, marginHorizontal: wide * 0.05, borderRadius: wide * 0.02, padding: wide * 0.02 }}>
-                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Experience:</Text>
+                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Experiencia:</Text>
                                     <Text style={{ fontSize: wide * 0.05, marginHorizontal: wide * 0.02, flex: 1 }}>{userDetails.brief_experience}</Text>
 
                                 </View>
                                 <Text style={{ marginLeft: wide * 0.05, fontSize: wide * 0.06, color: Colors.main, marginTop: wide * 0.04, fontWeight: 'bold' }}>Bank Details</Text>
                                 <View style={{ flexDirection: 'row', borderColor: Colors.main, borderWidth: 2, marginTop: wide * 0.04, marginHorizontal: wide * 0.05, borderRadius: wide * 0.02, padding: wide * 0.02 }}>
-                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Bank Name:</Text>
+                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Nombre del banco:</Text>
                                     <Text style={{ fontSize: wide * 0.05, marginHorizontal: wide * 0.02, flex: 1 }}>{userDetails.bank_name}</Text>
 
                                 </View>
                                 <View style={{ flexDirection: 'row', borderColor: Colors.main, borderWidth: 2, marginTop: wide * 0.05, marginHorizontal: wide * 0.05, borderRadius: wide * 0.02, padding: wide * 0.02 }}>
-                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Account Name:</Text>
+                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Nombre de la cuenta:</Text>
                                     <Text style={{ fontSize: wide * 0.05, marginHorizontal: wide * 0.02, flex: 1 }}>{userDetails.account_holder_name}</Text>
 
                                 </View>
                                 <View style={{ flexDirection: 'row', borderColor: Colors.main, borderWidth: 2, marginTop: wide * 0.05, marginHorizontal: wide * 0.05, borderRadius: wide * 0.02, padding: wide * 0.02 }}>
-                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Account No:</Text>
+                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Número de cuenta:</Text>
                                     <Text style={{ fontSize: wide * 0.05, marginHorizontal: wide * 0.02, flex: 1 }}>{userDetails.account_number}</Text>
 
                                 </View>
                                 <View style={{ flexDirection: 'row', borderColor: Colors.main, borderWidth: 2, marginTop: wide * 0.05, marginHorizontal: wide * 0.05, borderRadius: wide * 0.02, padding: wide * 0.02 }}>
-                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Accoount Type:</Text>
+                                    <Text style={{ fontSize: wide * 0.05, color: '#000000', fontWeight: 'bold', marginLeft: wide * 0.02 }} >Tipo de cuenta:</Text>
                                     <Text style={{ fontSize: wide * 0.05, marginHorizontal: wide * 0.02, flex: 1 }}>{userDetails.type_of_account}</Text>
 
                                 </View>
@@ -154,7 +154,7 @@ console.log(response.data)
                                             fontSize: wide * 0.035,
                                             fontWeight: 'bold'
                                         }}
-                                    >Edit Profile</Text>
+                                    >Editar perfil</Text>
                                 </TouchableOpacity>
 
 

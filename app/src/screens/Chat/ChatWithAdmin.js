@@ -158,7 +158,7 @@ const ChatWithAdmin = ({ route, navigation }) => {
                         </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
-                        <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Admin</Text>
+                        <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Administradora</Text>
                     </View>
                 </View>
                 <FlatList
@@ -191,7 +191,7 @@ const ChatWithAdmin = ({ route, navigation }) => {
                         {/* <TouchableOpacity onPress={() => UploadImage()}>
                             <MaterialCommunityIcons name='add' size={wide * 0.09} color={Colors.main} />
                         </TouchableOpacity> */}
-                        <TextInput placeholder='Enter Message' value={message} onChangeText={text => setMessage(text)} style={{ flex: 1, marginHorizontal: wide * 0.02, borderColor: Colors.main, borderWidth: 1, borderRadius: wide * 0.1, padding: wide * 0.02 }} />
+                        <TextInput placeholder='Ingresar mensaje' value={message} onChangeText={text => setMessage(text)} style={{ flex: 1, marginHorizontal: wide * 0.02, borderColor: Colors.main, borderWidth: 1, borderRadius: wide * 0.1, padding: wide * 0.02 }} />
                         <TouchableOpacity
                             onPress={() => {
                                 sendSms()

@@ -121,7 +121,7 @@ const MoreDetailsScreen = ({ route, navigation }) => {
                             </TouchableOpacity>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
-                            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Service Man List</Text>
+                            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Lista de trabajadores</Text>
                         </View>
                     </View>
                     <View style={{ marginHorizontal: wide * 0.045, height: '98%' }}>

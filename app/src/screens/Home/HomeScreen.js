@@ -136,14 +136,14 @@ const HomeScreen = ({ navigation }) => {
 
           <View >
             <View style={{ flexDirection: 'row' }}>
-              <Text style={{ flex: 1,   fontSize: wide * 0.09 ,marginRight:wide*.03}}>Hi, {userName}</Text>
+              <Text style={{ flex: 1,   fontSize: wide * 0.09 ,marginRight:wide*.03}}>Hola, {userName}</Text>
               <View style={{}}>
                 <Image
                   style={{ width: wide * 0.3, height: wide * 0.16, resizeMode: 'stretch', alignSelf: 'center' }}
                   source={require('../../../Images/logo.png')} />
               </View>
             </View>
-<Text style={{ color: Colors.main, fontWeight: 'bold',fontSize:wide*0.07,marginTop:wide*0.04,}}>What do you need?</Text>
+<Text style={{ color: Colors.main, fontWeight: 'bold',fontSize:wide*0.07,marginTop:wide*0.04,}}>Qué necesitas?</Text>
             {categories != null ?
               <FlatList
                 data={categories}

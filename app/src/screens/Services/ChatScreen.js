@@ -152,11 +152,11 @@ console.log(response.data)
     }, [])
     const UploadImage = () => {
         Alert.alert(
-            "Upload Image",
-            'Select Image From',
+            "Cargar imagen",
+            'Seleccionar imagen de',
             [
                 {
-                    text: 'Gallery',
+                    text: 'Galería',
                     onPress: () => {
                         ImagePicker.openPicker({
 
@@ -225,7 +225,7 @@ setLoading(true)
                     }
                 },
                 {
-                    text: 'Camera', onPress: () => {
+                    text: 'Cámara', onPress: () => {
                         ImagePicker.openCamera({
                             width: 500,
                             height: 500,
@@ -275,7 +275,7 @@ setLoading(true)
                     }
                 },
                 {
-                    text: 'Cancel',
+                    text: 'Cancelar',
                     // onPress: () => Toast.show('Cancel Pressed'),
                     style: 'cancel'
                 }
@@ -332,7 +332,7 @@ setLoading(true)
         if (price < min_price) {
             Alert.alert(
                 '',
-                'Price can not be less than minimum pr',
+                'Price can not be less than minimum price',
             );
             return
         }
@@ -410,22 +410,22 @@ setLoading(true)
                             }}>
                                 <Text style={{
                                     marginLeft: wide * 0.03, flex: 1, color: Colors.white, fontSize: wide * 0.055, fontWeight: '700', marginTop: wide * 0.01,
-                                }}>Finalize The Deal</Text>
+                                }}>Finalizar la Deal</Text>
                                 <Ionicons name="ios-close" onPress={() => setDealDoneDialog(false)} style={{ marginRight: wide * 0.02 }} size={34} color="#fff" />
                             </View>
                             <View style={{ width: '100%', height: '85%' }}>
                                 <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
                                     <ScrollView showsVerticalScrollIndicator={false} bounces={false} keyboardShouldPersistTaps="handled">
                                         <View style={{ marginHorizontal: wide * 0.05, marginVertical: wide * 0.05 }}>
-                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.08 }}>Address: {services_data.customer_address}</Text>
-                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.03 }}>Category: {services_data.category}</Text>
-                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.03 }}>Sub Category: {services_data.sub_category}</Text>
-                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.03 }}>Minimum Price: {services_data.min_price}</Text>
-                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.1 }}>Enter Price</Text>
+                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.08 }}>DIRECCIÓN: {services_data.customer_address}</Text>
+                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.03 }}>Categoría: {services_data.category}</Text>
+                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.03 }}>Subcategoría: {services_data.sub_category}</Text>
+                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.03 }}>Precio mínimo: {services_data.min_price}</Text>
+                                            <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', marginTop: wide * 0.1 }}>Introducir precio</Text>
 
                                             <TextInput
                                                 multiline={true}
-                                                placeholder='Enter Price'
+                                                placeholder='Introducir precio'
                                                 fontSize={wide * 0.05}
                                                 style={{
                                                     borderWidth: 1,
@@ -599,7 +599,7 @@ setLoading(true)
                         <TouchableOpacity onPress={() => UploadImage()}>
                             <MaterialCommunityIcons name='add' size={wide * 0.09} color={Colors.main} />
                         </TouchableOpacity>
-                        <TextInput placeholder='Enter Message' value={message} onChangeText={text => setMessage(text)} style={{ flex: 1, marginHorizontal: wide * 0.02, borderColor: Colors.main, borderWidth: 1, borderRadius: wide * 0.1, padding: wide * 0.02 }} />
+                        <TextInput placeholder='Ingresar mensaje' value={message} onChangeText={text => setMessage(text)} style={{ flex: 1, marginHorizontal: wide * 0.02, borderColor: Colors.main, borderWidth: 1, borderRadius: wide * 0.1, padding: wide * 0.02 }} />
                         <TouchableOpacity
                             onPress={() => {
                                 sendSms()

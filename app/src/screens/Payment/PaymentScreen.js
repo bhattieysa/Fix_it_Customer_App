@@ -240,13 +240,13 @@ const PaymentScreen = ({ navigation }) => {
 
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ marginBottom: wide * 0.1 }}>
-                            <Text style={{ fontSize: wide * 0.065, fontWeight: '600', alignSelf: 'center' }}>Total Income</Text>
+                            <Text style={{ fontSize: wide * 0.065, fontWeight: '600', alignSelf: 'center' }}>Ingresos totales</Text>
                             <View style={{ marginTop: wide * 0.03, borderRadius: wide * 0.1, alignItems: 'center', justifyContent: 'center', width: wide * 0.45, height: wide * 0.13 }}>
                                 <Text style={{ fontSize: wide * 0.06, color: Colors.main, fontWeight: 'bold' }}>{totalIncome}</Text>
                             </View>
                         </View>
                         <View>
-                            <Text style={{ fontSize: wide * 0.065, fontWeight: '600', alignSelf: 'center' }}>Monthly Income</Text>
+                            <Text style={{ fontSize: wide * 0.065, fontWeight: '600', alignSelf: 'center' }}>Ingreso mensual</Text>
                             <View style={{ marginTop: wide * 0.03, borderRadius: wide * 0.1, alignItems: 'center', justifyContent: 'center', width: wide * 0.45, height: wide * 0.13 }}>
                                 <Text style={{ fontSize: wide * 0.06, color: Colors.main, fontWeight: 'bold' }}>{totalIncomeMonthly}</Text>
                             </View>
@@ -257,7 +257,7 @@ const PaymentScreen = ({ navigation }) => {
                                     navigation.navigate("HistoryScreen")
                                 }}
                                 style={{ marginTop: wide * 0.03, borderRadius: wide * 0.1, backgroundColor: Colors.main, color: '#ffffff', alignItems: 'center', justifyContent: 'center', width: wide * 0.7, height: wide * 0.13 }}>
-                                <Text style={{ fontSize: wide * 0.06, color: '#ffffff', }}>History Of Payments</Text>
+                                <Text style={{ fontSize: wide * 0.06, color: '#ffffff', }}>Historial de pagos</Text>
                             </TouchableOpacity>
                         </View>
                         <View>
@@ -299,7 +299,7 @@ const PaymentScreen = ({ navigation }) => {
                             }}>
                                 <Text style={{
                                     marginLeft: wide * 0.03, flex: 1, color: Colors.white, fontSize: 18, fontWeight: '700', marginTop: wide * 0.01,
-                                }}>More Info</Text>
+                                }}>Más información</Text>
                                 <Ionicons name="ios-close" onPress={() => setMoreInfo(false)} style={{ marginRight: wide * 0.02 }} size={34} color="#fff" />
                             </View>
                             <View style={{ width: '100%', height: '80%',alignItems:'center' }}>
@@ -315,7 +315,7 @@ const PaymentScreen = ({ navigation }) => {
                 : null
             }
                             <TouchableOpacity onPress={()=>setMoreInfo(true)} style={{ marginTop: wide * 0.03, borderRadius: wide * 0.1, backgroundColor: Colors.main, color: '#ffffff', alignItems: 'center', justifyContent: 'center', width: wide * 0.55, height: wide * 0.13 }}>
-                                <Text style={{ fontSize: wide * 0.06, color: '#ffffff', }}>More Info</Text>
+                                <Text style={{ fontSize: wide * 0.06, color: '#ffffff', }}>Más información</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

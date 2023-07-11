@@ -11,6 +11,11 @@
 		045A846D29980EFD0089686D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		045A846E29980F270089686D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		045A846F29980F270089686D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		049E93742A59B587001F2952 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
+		049E93752A59B587001F2952 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		049E93772A59B587001F2952 /* libPods-Fix_it.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 742B66711AF8DCB644BB0B95 /* libPods-Fix_it.a */; };
+		049E93792A59B587001F2952 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		049E937A2A59B587001F2952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4C38FE86D8B00C1992942F35 /* libPods-Fix_it.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 742B66711AF8DCB644BB0B95 /* libPods-Fix_it.a */; };
@@ -47,6 +52,8 @@
 		047856EC29965CC60024A02E /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		047856ED29965CC60024A02E /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		047856EE29965CC60024A02E /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		049E93812A59B588001F2952 /* Fix_it copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fix_it copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		049E93822A59B588001F2952 /* Fix_it copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Fix_it copy-Info.plist"; path = "/Users/Eysa/Fix_it-Customer-app/ios/Fix_it copy-Info.plist"; sourceTree = "<absolute>"; };
 		088E24085DAD1BBC3F57D6BB /* libPods-Fix_it-Fix_itTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fix_it-Fix_itTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D07A3B365D9EC202B3DAB49 /* Pods-Fix_it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fix_it.debug.xcconfig"; path = "Target Support Files/Pods-Fix_it/Pods-Fix_it.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Fix_it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fix_it.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +80,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2ED25D61B26EE49B898FDAE /* libPods-Fix_it-Fix_itTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		049E93762A59B587001F2952 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				049E93772A59B587001F2952 /* libPods-Fix_it.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +182,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				049E93822A59B588001F2952 /* Fix_it copy-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -178,6 +194,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* Fix_it.app */,
 				00E356EE1AD99517003FC87E /* Fix_itTests.xctest */,
+				049E93812A59B588001F2952 /* Fix_it copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +237,28 @@
 			productName = Fix_itTests;
 			productReference = 00E356EE1AD99517003FC87E /* Fix_itTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		049E93702A59B587001F2952 /* Fix_it copy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 049E937E2A59B587001F2952 /* Build configuration list for PBXNativeTarget "Fix_it copy" */;
+			buildPhases = (
+				049E93712A59B587001F2952 /* [CP] Check Pods Manifest.lock */,
+				049E93722A59B587001F2952 /* Start Packager */,
+				049E93732A59B587001F2952 /* Sources */,
+				049E93762A59B587001F2952 /* Frameworks */,
+				049E93782A59B587001F2952 /* Resources */,
+				049E937B2A59B587001F2952 /* Bundle React Native code and images */,
+				049E937C2A59B587001F2952 /* [CP] Embed Pods Frameworks */,
+				049E937D2A59B587001F2952 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fix_it copy";
+			productName = Fix_it;
+			productReference = 049E93812A59B588001F2952 /* Fix_it copy.app */;
+			productType = "com.apple.product-type.application";
 		};
 		13B07F861A680F5B00A75B9A /* Fix_it */ = {
 			isa = PBXNativeTarget;
@@ -275,6 +314,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* Fix_it */,
 				00E356ED1AD99517003FC87E /* Fix_itTests */,
+				049E93702A59B587001F2952 /* Fix_it copy */,
 			);
 		};
 /* End PBXProject section */
@@ -285,6 +325,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				045A846F29980F270089686D /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		049E93782A59B587001F2952 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				049E93792A59B587001F2952 /* Images.xcassets in Resources */,
+				049E937A2A59B587001F2952 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +380,97 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fix_it/Pods-Fix_it-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		049E93712A59B587001F2952 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fix_it-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		049E93722A59B587001F2952 /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		049E937B2A59B587001F2952 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/.xcode.env",
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+		};
+		049E937C2A59B587001F2952 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fix_it/Pods-Fix_it-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fix_it/Pods-Fix_it-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fix_it/Pods-Fix_it-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		049E937D2A59B587001F2952 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fix_it/Pods-Fix_it-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fix_it/Pods-Fix_it-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fix_it/Pods-Fix_it-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
@@ -458,6 +598,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		049E93732A59B587001F2952 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				049E93742A59B587001F2952 /* AppDelegate.mm in Sources */,
+				049E93752A59B587001F2952 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -529,7 +678,7 @@
 			};
 			name = Release;
 		};
-		13B07F941A680F5B00A75B9A /* Debug */ = {
+		049E937F2A59B587001F2952 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0D07A3B365D9EC202B3DAB49 /* Pods-Fix_it.debug.xcconfig */;
 			buildSettings = {
@@ -541,8 +690,75 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8JDAWFHRWY;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Fix_it/Info.plist;
+				INFOPLIST_FILE = "Fix_it copy-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Fix it";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.eysaazharcustomerx.--PRODUCT-NAME-rfc1034identifier-";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.eysaazhar.fixit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		049E93802A59B587001F2952 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 586563D3324F35C5630A07D8 /* Pods-Fix_it.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8JDAWFHRWY;
+				INFOPLIST_FILE = "Fix_it copy-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Fix it";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.eysaazharcustomerx.--PRODUCT-NAME-rfc1034identifier-";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = org.reactjs.native.eysaazhar.fixit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D07A3B365D9EC202B3DAB49 /* Pods-Fix_it.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PQJ5D3Q9V4;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Fix_it/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fixit Servicios";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -572,9 +788,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8JDAWFHRWY;
+				DEVELOPMENT_TEAM = PQJ5D3Q9V4;
 				INFOPLIST_FILE = Fix_it/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Fix it";
+				INFOPLIST_KEY_CFBundleDisplayName = "Fixit Servicios";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -738,6 +955,15 @@
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
 				00E356F71AD99517003FC87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		049E937E2A59B587001F2952 /* Build configuration list for PBXNativeTarget "Fix_it copy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				049E937F2A59B587001F2952 /* Debug */,
+				049E93802A59B587001F2952 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

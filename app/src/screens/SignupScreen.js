@@ -14,7 +14,6 @@ import ImagePicker from 'react-native-image-crop-picker';
 import DocumentPicker from 'react-native-document-picker'
 
 const SignupScreen = ({ route, navigation }) => {
-  // getting params
 
   const [showCategoryDropDown, setShowCategoryrDropDown] = useState(false)
   const [showSubCategoryDropDown, setShowSubCategoryrDropDown] = useState(false)
@@ -36,20 +35,19 @@ const SignupScreen = ({ route, navigation }) => {
   const [backgroundCheckCertificatesBase64, setbackgroundCheckCertificatesBase64] = useState(null)
   const [professionCertificatesBase64, setProfessionCertificatesBase64] = useState(null)
   const [backgroundCheckCertificates, setbackgroundCheckCertificates] = useState(null)
-  4
-  const [fullName, setFullName] = useState(null)
-  const [dni, setDni] = useState(null)
-  const [phonenumber, setPhonenumber] = useState(null)
-  const [emailAddress, setEmailAddress] = useState(null)
-  const [password, setPassword] = useState(null)
-  const [experience, setExperience] = useState(null)
-  const [address, setAddress] = useState(null)
+  const [fullName, setFullName] = useState("")
+  const [dni, setDni] = useState("")
+  const [phonenumber, setPhonenumber] = useState("")
+  const [emailAddress, setEmailAddress] = useState("")
+  const [password, setPassword] = useState("")
+  const [experience, setExperience] = useState("")
+  const [address, setAddress] = useState("")
   const [accountHolderName, setAccountHolderName] = useState(null)
   const [typeOfAccount, setTypeOfAccount] = useState(null)
   const [accountNumber, setAccountNumber] = useState(null)
   const [bankName, setBankName] = useState(null)
-  const [confirmPassword, setConfirmPassword] = useState(null)
-  
+  const [confirmPassword, setConfirmPassword] = useState("")
+
 
   let wide = Layout.width;
   let high = Layout.height;
@@ -58,14 +56,13 @@ const SignupScreen = ({ route, navigation }) => {
 
   const UploadImage = () => {
     Alert.alert(
-      "Upload Your Image",
-      'Select Pic From',
+      "Sube tu imagen",
+      'Seleccionar foto de',
       [
         {
-          text: 'Gallery',
-          onPress: () => {
-            ImagePicker.openPicker({
-
+          text: 'Galería',
+          onPress: async () => {
+          await  ImagePicker.openPicker({
               width: 500,
               height: 500,
               cropping: true,
@@ -96,7 +93,7 @@ const SignupScreen = ({ route, navigation }) => {
           }
         },
         {
-          text: 'Camera', onPress: () => {
+          text: 'Cámara', onPress: () => {
             ImagePicker.openCamera({
               width: 300,
               height: 400,
@@ -115,7 +112,7 @@ const SignupScreen = ({ route, navigation }) => {
           }
         },
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           // onPress: () => Toast.show('Cancel Pressed'),
           style: 'cancel'
         }
@@ -123,8 +120,135 @@ const SignupScreen = ({ route, navigation }) => {
       { cancelable: false }
     );
   }
+  const FrontSide = async () => {
+    Alert.alert(
+      "Imagen del frente de Rut",
+      'Seleccionar foto de',
+      [
+        {
+          text: 'Galería',
+          onPress: async () => {
+          await  ImagePicker.openPicker({
+              width: 500,
+              height: 500,
+              cropping: true,
+              cropperCircleOverlay: false,
+              sortOrder: 'none',
+              compressImageMaxWidth: 1000,
+              compressImageMaxHeight: 1000,
+              compressImageQuality: 1,
+              compressVideoPreset: 'MediumQuality',
+              includeExif: true,
+              cropperStatusBarColor: 'white',
+              cropperToolbarColor: 'white',
+              cropperActiveWidgetColor: 'white',
+              cropperToolbarWidgetColor: '#3498DB',
+              mediaType: 'photo',
+              includeBase64: true
+            })
+              .then((image) => {          
+                setFrontSideDNI(image.path)
+                setFrontSideDNIBase64(image.data)
+
+              })
+              .catch((e) => {
+                //Toast.show("Failed")
+              });
+          }
+        },
+        {
+          text: 'Cámara', onPress: async() => {
+            await    ImagePicker.openCamera({
+              width: 300,
+              height: 400,
+              cropping: true,
+              mediaType: 'photo',
+              includeBase64: true
+            }).then(image => {
+
+              // setBase64(image.data)
+              // setProfileImage(image.path)
+              setFrontSideDNI(image.path)
+              setFrontSideDNIBase64(image.data)
+            });
+          }
+        },
+        {
+          text: 'Cancelar',
+          // onPress: () => Toast.show('Cancel Pressed'),
+          style: 'cancel'
+        }
+      ],
+      { cancelable: false }
+    );
+  }
+  const BackSide = () => {
+    Alert.alert(
+      "Imagen del reverso de Rut",
+      'Seleccionar foto de',
+      [
+        {
+          text: 'Galería',
+          onPress: () => {
+            ImagePicker.openPicker({
+
+              width: 500,
+              height: 500,
+              cropping: true,
+              cropperCircleOverlay: false,
+              sortOrder: 'none',
+              compressImageMaxWidth: 1000,
+              compressImageMaxHeight: 1000,
+              compressImageQuality: 1,
+              compressVideoPreset: 'MediumQuality',
+              includeExif: true,
+              cropperStatusBarColor: 'white',
+              cropperToolbarColor: 'white',
+              cropperActiveWidgetColor: 'white',
+              cropperToolbarWidgetColor: '#3498DB',
+              mediaType: 'photo',
+              includeBase64: true
+            })
+              .then((image) => {
+                // setBase64(image.data)
+                // setProfileImage(image.path)
+                setBackSideDNI(image.path)
+                setBackSideDNIBase64(image.data)
+
+              })
+              .catch((e) => {
+                //Toast.show("Failed")
+              });
+          }
+        },
+        {
+          text: 'Cámara', onPress: () => {
+            ImagePicker.openCamera({
+              width: 300,
+              height: 400,
+              cropping: true,
+              mediaType: 'photo',
+              includeBase64: true
+            }).then(image => {
+
+              // setBase64(image.data)
+              // setProfileImage(image.path)
+              setBackSideDNI(image.path)
+              setBackSideDNIBase64(image.data)
 
 
+            });
+          }
+        },
+        {
+          text: 'Cancelar',
+          // onPress: () => Toast.show('Cancel Pressed'),
+          style: 'cancel'
+        }
+      ],
+      { cancelable: false }
+    );
+  }
   const BackGroundCheck = useCallback(async () => {
     try {
       const response = await DocumentPicker.pick({
@@ -148,66 +272,76 @@ const SignupScreen = ({ route, navigation }) => {
 
   const Signup = () => {
 
+    debugger;
 
-    if (fullName == null) {
-      setFullName(false)
+    setLoading(true)
+
+console.log("test")
+debugger;
+    if (fullName == "") {
+      setFullName("false")
+      debugger;
       return
     }
-    if (dni == null) {
-      setDni(false)
+    if (dni == "") {
+      setDni("false")
+      debugger;
       return
     }
-    if (phonenumber == null) {
-      setPhonenumber(false)
+    if (phonenumber == "") {
+      setPhonenumber("false")
+      debugger;
       return
     }
-    if (emailAddress == null) {
-      setEmailAddress(false)
+    if (emailAddress == "") {
+      setEmailAddress("false")
+      debugger;
       return
     }
-    if (password == null) {
-      setPassword(false)
+    if (password == "") {
+      setPassword("false")
+      debugger;
       return
     }
 
-    if (password !=confirmPassword) {
-      setConfirmPassword(false)
+    if (password != confirmPassword) {
+      setConfirmPassword("false")
+      debugger;
       return
     }
-    if (experience == null) {
-      setExperience(false)
-      return
-    }
-    if (address == null) {
-      setAddress(false)
+
+    if (address == "") {
+      setAddress("false")
+      debugger;
       return
     }
 
     if (image == null) {
+      debugger;
       Alert.alert(
         '',
-        'Please Upload Your Image',
+        'Cargue su imagen',
       );
       return
     }
+    if (frontSideDNI == null) {
+      debugger;
+      Alert.alert(
+        '',
+        'Cargue la imagen de la parte frontal de Rut',
+      );
+      return
+    }
+    if (backSideDNI == null) {
+      debugger;
+      Alert.alert(
+        '',
+        'Cargue la imagen del reverso de Rut',
+      );
+      return
+    }
+    debugger;
 
-    // if (backgroundCheckCertificates == null) {
-    //   Alert.alert(
-    //     '',
-    //     'Please Upload Background Check Certificate',
-    //   );
-    //   return
-    // }
-    // if (professionCertificates == null) {
-    //   Alert.alert(
-    //     '',
-    //     'Please Upload Profession Certificate',
-    //   );
-    //   return
-    // }
-
-
-    setLoading(true)
 
 
     var formData = new FormData();
@@ -219,38 +353,34 @@ const SignupScreen = ({ route, navigation }) => {
     formData.append('experience', experience);
     formData.append('address', address);
     formData.append('image', imageBase64);
-    // backgroundCheckCertificates.map((file, index) => (
-    //   formData.append('background', {
-    //     uri: file.uri,
-    //     type: file.type,
-    //     name: file.name,
-    //   })
-    // ))
+    formData.append('front_side', frontSideDNIBase64);
+    formData.append('back_side', backSideDNIBase64);
+    debugger;
+
     axios({
       method: 'POST',
       url: api.SIGNUP_URL,
       data: formData,
-
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'multipart/form-data'
       }
     })
       .then(function (response) {
-
+        console.log(response.data)
+        debugger;
         if (response.data.signup.error == 'false') {
           setLoading(false)
           Alert.alert(
             '',
-            'Signup Successful & for security of our clients and workers, your account is being review, please wait and we will let you know when it will be ready to log in in a few moment please',
+            'Registro exitoso y para la seguridad de nuestros clientes y trabajadores, su cuenta está siendo revisada, espere y le informaremos cuándo estará lista para iniciar sesión en unos momentos, por favor',
           );
           navigation.navigate('LoginScreen')
-
         } else {
           setLoading(false)
           Alert.alert(
             '',
-            'Failed To Signup',
+            'Error al registrarse',
           );
         }
       })
@@ -266,128 +396,121 @@ const SignupScreen = ({ route, navigation }) => {
       <SafeAreaView>
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
           <ScrollView showsVerticalScrollIndicator={false} bounces={false} keyboardShouldPersistTaps="handled">
-
             <View style={{ marginHorizontal: wide * 0.07, marginVertical: wide * 0.1 }}>
-
               <Image
                 style={{ width: wide * 0.65, height: wide * 0.25, resizeMode: 'cover', alignSelf: 'center' }}
                 source={require("../../Images/logo.png")}
               />
-              <Text style={{ alignSelf: 'center', fontSize: wide * 0.06, color: '#000000', fontWeight: 'bold' }}>Create Your Account</Text>
+              <Text style={{ alignSelf: 'center', fontSize: wide * 0.06, color: '#000000', fontWeight: 'bold', marginTop: wide * 0.05 }}>Crea tu cuenta</Text>
               <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Full Name</Text>
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Nombre completo</Text>
                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput placeholder='Enter Full Name' onChangeText={text => setFullName(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                  <TextInput placeholder='Ingrese el nombre completo' onChangeText={text => setFullName(text)} style={{ marginHorizontal: wide * 0.05 }} />
                 </View>
               </View>
-              {fullName == false ?
+              {fullName == "false" ?
                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                   <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Full Name Can't Be Blank</Text>
-                  </View>
-                </View>
-                :
-                <></>
-              }
-              <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>DNI</Text>
-                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput placeholder='Enter DNI' onChangeText={text => setDni(text)} style={{ marginHorizontal: wide * 0.05 }} />
-                </View>
-              </View>
-              {dni == false ?
-                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
-                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >DNI Can't Be Blank</Text>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El nombre completo no puede estar en blanco</Text>
                   </View>
                 </View>
                 :
                 <></>
               }
               <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Phonenumber</Text>
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Rut</Text>
                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput placeholder='Enter Phonenumber' onChangeText={text => setPhonenumber(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                  <TextInput placeholder='Ingresa Rut' onChangeText={text => setDni(text)} style={{ marginHorizontal: wide * 0.05 }} />
                 </View>
               </View>
-              {phonenumber == false ?
+              {dni == "false" ?
                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                   <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Phonenumber Can't Be Blank</Text>
-                  </View>
-                </View>
-                :
-                <></>
-              }
-
-              <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Email Address</Text>
-                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput onChangeText={text => setEmailAddress(text)} placeholder='Enter Email' style={{ marginHorizontal: wide * 0.05 }} />
-                </View>
-              </View>
-              {emailAddress == false ?
-                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
-                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Email Can't Be Blank</Text>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Rut no puede estar en blanco</Text>
                   </View>
                 </View>
                 :
                 <></>
               }
               <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Password</Text>
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Número de teléfono</Text>
                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput secureTextEntry={true} onChangeText={text => setPassword(text)} placeholder='Enter Password' style={{ marginHorizontal: wide * 0.05 }} />
+                  <TextInput placeholder='Ingresa número telefónico' onChangeText={text => setPhonenumber(text)} style={{ marginHorizontal: wide * 0.05 }} />
                 </View>
               </View>
-              {password == false ?
+              {phonenumber == "false" ?
                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                   <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Password Can't Be Blank</Text>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El número de teléfono no puede estar en blanco</Text>
                   </View>
                 </View>
                 :
                 <></>
               }
-                            <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Confirm Password</Text>
-                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput secureTextEntry={true} onChangeText={text => setConfirmPassword(text)} placeholder='Enter Confirm Password' style={{ marginHorizontal: wide * 0.05 }} />
-                </View>
-              </View>
-              {confirmPassword==false ?
-                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
-                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Password Not Matched</Text>
-                  </View>
-                </View>
-                :
-                <></>
-              }
-
               <View style={{ marginTop: wide * 0.05 }} >
-                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Address</Text>
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Dirección de correo electrónico</Text>
                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                  <TextInput placeholder='Enter Address' onChangeText={text => setAddress(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                  <TextInput onChangeText={text => setEmailAddress(text)} placeholder='Ingrese correo electrónico' style={{ marginHorizontal: wide * 0.05 }} />
                 </View>
               </View>
-              {address == false ?
+              {emailAddress == "false" ?
                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                   <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Address Can't Be Blank</Text>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El correo electrónico no puede estar en blanco</Text>
                   </View>
                 </View>
                 :
                 <></>
               }
-
+              <View style={{ marginTop: wide * 0.05 }} >
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Contraseña</Text>
+                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
+                  <TextInput secureTextEntry={true} onChangeText={text => setPassword(text)} placeholder='Introducir la contraseña' style={{ marginHorizontal: wide * 0.05 }} />
+                </View>
+              </View>
+              {password == "false" ?
+                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
+                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >La contraseña no puede estar en blanco</Text>
+                  </View>
+                </View>
+                :
+                <></>
+              }
+              <View style={{ marginTop: wide * 0.05 }} >
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Confirmar Contraseña</Text>
+                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
+                  <TextInput secureTextEntry={true} onChangeText={text => setConfirmPassword(text)} placeholder='Ingresar Confirmar contraseña' style={{ marginHorizontal: wide * 0.05 }} />
+                </View>
+              </View>
+              {confirmPassword == "false" ?
+                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
+                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Contraseña no coincidente</Text>
+                  </View>
+                </View>
+                :
+                <></>
+              }
+              <View style={{ marginTop: wide * 0.05 }} >
+                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Dirección</Text>
+                <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
+                  <TextInput placeholder='Ingresa la direccion' onChangeText={text => setAddress(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                </View>
+              </View>
+              {address == "false" ?
+                <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
+                  <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
+                    <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >La dirección no puede estar en blanco</Text>
+                  </View>
+                </View>
+                :
+                <></>
+              }
               <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
-                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Upload Your Image</Text>
+                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Sube tu imagen</Text>
               </View>
-
               <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: wide * 0.07 }}>
-
                 <TouchableOpacity onPress={() => UploadImage()}>
                   <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                     {image != null ?
@@ -398,50 +521,55 @@ const SignupScreen = ({ route, navigation }) => {
                       :
                       <Entypo name='upload' size={wide * 0.15} color="#000" />
                     }
-                    <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600' }}>Upload Image</Text>
-
+                    <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600' }}>Cargar imagen</Text>
                   </View>
                 </TouchableOpacity>
-
-
               </View>
-
-
-              {/* <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
-                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Certificates</Text>
-              </View> */}
-
-              {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: wide * 0.07 }}>
-
-                <TouchableOpacity onPress={() => BackGroundCheck()}>
+              <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
+                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Subir Rut Imágenes</Text>
+              </View>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: wide * 0.07 }}>
+                <TouchableOpacity onPress={() => FrontSide()}>
                   <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-
-                    {backgroundCheckCertificates != null ?
-                      <MaterialCommunityIcons name='certificate' size={wide * 0.23} color="#0000FF" />
+                    {frontSideDNI != null ?
+                      <Image
+                        style={{ width: wide * 0.2, height: wide * 0.15, borderRadius: wide * 0.02, marginBottom: wide * 0.02, marginTop: wide * 0.03 }}
+                        source={{ uri: frontSideDNI }}
+                      />
                       :
-                      <MaterialCommunityIcons name='certificate' size={wide * 0.23} color="#000" />
+                      <Entypo name='v-card' size={wide * 0.2} color="#000" />
                     }
-                    <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', alignSelf: 'center' }}>Background Check</Text>
+                    <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600' }}>Lado delantero</Text>
                   </View>
                 </TouchableOpacity>
-              </View> */}
+                <TouchableOpacity onPress={() => BackSide()}>
+                  <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    {backSideDNI != null ?
+                      <Image
+                        style={{ width: wide * 0.2, height: wide * 0.15, borderRadius: wide * 0.02, marginBottom: wide * 0.02, marginTop: wide * 0.03 }}
+                        source={{ uri: backSideDNI }}
+                      />
+                      :
+                      <Entypo name='v-card' size={wide * 0.2} color="#000" />
+                    }
+                    <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600' }}>Parte trasera</Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
               <TouchableOpacity onPress={() => Signup()} style={{ marginTop: wide * 0.1, justifyContent: 'center', alignItems: 'center' }} >
                 <View style={{ backgroundColor: Colors.main, height: wide * 0.14, borderRadius: wide * 0.1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
                   <View style={{ flex: 3, alignItems: 'center', }}>
-                    <Text style={{ color: Colors.white, fontSize: wide * 0.04, fontWeight: 'bold' }}>SIGN UP</Text>
+                    <Text style={{ color: Colors.white, fontSize: wide * 0.04, fontWeight: 'bold' }}>INSCRIBIRSE</Text>
                   </View>
                 </View>
               </TouchableOpacity>
               <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: wide * 0.04 }}>
-                <Text style={{ fontSize: wide * 0.039, color: '#000000', }}>Already have a Account?</Text>
+                <Text style={{ fontSize: wide * 0.039, color: '#000000', }}>Ya tienes una cuenta?</Text>
                 <TouchableOpacity onPress={() => {
                   navigation.navigate('LoginScreen')
-                }}><Text style={{ marginTop: -wide * 0.005, fontSize: wide * 0.043, marginLeft: 5, color: Colors.main, fontWeight: 'bold' }} >Login</Text></TouchableOpacity>
+                }}><Text style={{ marginTop: -wide * 0.005, fontSize: wide * 0.043, marginLeft: 5, color: Colors.main, fontWeight: 'bold' }} >Acceso</Text></TouchableOpacity>
               </View>
-
             </View>
-
-
           </ScrollView>
         </KeyboardAvoidingView>
       </SafeAreaView>

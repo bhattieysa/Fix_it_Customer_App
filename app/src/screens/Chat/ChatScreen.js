@@ -134,7 +134,7 @@ const ChatScreen = ({ navigation }) => {
 
                         <TouchableOpacity style={{
                             backgroundColor: Colors.main,
-                            width: wide * 0.4,
+                            width: wide * 0.6,
                             alignSelf: 'flex-end',
                             justifyContent: "center",
                             alignItems: 'center',
@@ -150,7 +150,7 @@ const ChatScreen = ({ navigation }) => {
                                 fontWeight: 'bold',
                                 fontSize: wide * 0.04
                             }}
-                        >Chat With Admin</Text>
+                        >Chatear con el administrador</Text>
                         </TouchableOpacity>
 
                         {chatList != null ?

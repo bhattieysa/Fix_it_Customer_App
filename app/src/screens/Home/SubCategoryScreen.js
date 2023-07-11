@@ -70,7 +70,7 @@ const SubCategoryScreen = ({ route, navigation }) => {
                             </TouchableOpacity>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
-                            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Sub Category</Text>
+                            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Subcategoría</Text>
                         </View>
                     </View>
                     <View style={{ marginHorizontal: wide * 0.045 }} >
@@ -110,7 +110,7 @@ const SubCategoryScreen = ({ route, navigation }) => {
                                             </TouchableOpacity>
                                             :
                                             <View style={{ height: '100%', alignItems: 'center', justifyContent: "center" }}>
-                                                <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No Sub Categories Available </Text>
+                                                <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No hay subcategorías disponibles </Text>
 
 
                                             </View>

@@ -638,23 +638,23 @@ const ServicesScreen = ({ navigation }) => {
                                                 <Text style={{ marginRight: wide * 0.02, alignSelf: 'flex-end', fontSize: wide * 0.045, color: Colors.main, fontWeight: '600' }}>{item.item.date}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.045 }}>
-                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Category</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Categoría</Text>
                                                 <Text style={{ fontSize: wide * 0.045, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.category_name}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Sub Category</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Subcategoría</Text>
                                                 <Text style={{ fontSize: wide * 0.045, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.sub_category}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Service Name</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Servicio</Text>
                                                 <Text style={{ fontSize: wide * 0.045, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.name}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Address</Text>
+                                                <Text style={{ fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>DIRECCIÓN</Text>
                                                 <Text style={{ fontSize: wide * 0.045, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.location}</Text>
                                             </View>
                                             <View style={{ marginVertical: wide * 0.02, marginHorizontal: wide * 0.045, width: '100%' }}>
-                                                <Text style={{ alignSelf: 'center', fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Problem</Text>
+                                                <Text style={{ alignSelf: 'center', fontSize: wide * 0.045, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Problema</Text>
                                                 <Text
                                                 ellipsizeMode='tail' 
                                                 numberOfLines={1}
@@ -672,21 +672,21 @@ const ServicesScreen = ({ navigation }) => {
                                                             onPress={() => {
                                                                 Alert.alert(
                                                                     '',
-                                                                    'This Job Is Done Or Not?',
+                                                                    'Este trabajo está hecho o no?',
                                                                     [
                                                                         {
-                                                                            text: 'Close', onPress: () => console.log('Cancel Pressed'), style: 'destructive'
+                                                                            text: 'Cerca', onPress: () => console.log('Cancel Pressed'), style: 'destructive'
                                                                         },
 
                                                                         {
-                                                                            text: 'Not Done', onPress: () => {
+                                                                            text: 'No hecho', onPress: () => {
                                                                                 setNotDone(true)
                                                                                 setServicesID(item.item.id)
 
                                                                             }
                                                                         },
                                                                         {
-                                                                            text: 'Done', onPress: () => {
+                                                                            text: 'Hecho', onPress: () => {
                                                                                 setServicesID(item.item.id)
                                                                                 doneService(item.item.id)
                                                                             }
@@ -704,7 +704,7 @@ const ServicesScreen = ({ navigation }) => {
                                                                 setServicesID(item.item.id)
                                                             }}
                                                             style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.3, height: wide * 0.09, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
-                                                            <Text style={{ color: 'white', fontSize: wide * 0.035, fontWeight: '600' }}>Job Complete</Text>
+                                                            <Text style={{ color: 'white', fontSize: wide * 0.035, fontWeight: '600' }}>Trabajo completado</Text>
                                                         </TouchableOpacity>
 
 
@@ -717,8 +717,8 @@ const ServicesScreen = ({ navigation }) => {
                                                                         min_price: item.item.min_price
                                                                     })
                                                                 }}
-                                                                style={{ marginRight: wide * 0.06, marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.3, height: wide * 0.09, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
-                                                                <Text style={{ color: 'white', fontSize: wide * 0.035, fontWeight: '600' }}>Applied List ({item.item.apply})</Text>
+                                                                style={{ marginRight: wide * 0.03, marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.44, height: wide * 0.09, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                                <Text style={{ color: 'white', fontSize: wide * 0.035, fontWeight: '600' }}>Lista de trabajadores ({item.item.apply})</Text>
                                                             </TouchableOpacity>
                                                             <TouchableOpacity
                                                                 onPress={() => {
@@ -728,8 +728,8 @@ const ServicesScreen = ({ navigation }) => {
                                                                         services_name:item.item.name
                                                                     })
                                                                 }}
-                                                                style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.3, height: wide * 0.09, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
-                                                                <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Offer List ({item.item.offer})</Text>
+                                                                style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.4, height: wide * 0.09, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                                <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Lista de ofertas ({item.item.offer})</Text>
                                                             </TouchableOpacity>
                                                         </View>
                                                     :
@@ -738,8 +738,8 @@ const ServicesScreen = ({ navigation }) => {
                                                                setRatings(true)
                                                                 setServicesID(item.item.id)
                                                             }}
-                                                            style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
-                                                            <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Give Ratings ?</Text>
+                                                            style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.4, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
+                                                            <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>dar calificaciones ?</Text>
                                                         </TouchableOpacity>
                                                     :
                                                     <TouchableOpacity
@@ -748,7 +748,7 @@ const ServicesScreen = ({ navigation }) => {
                                                                 setServicesID(item.item.id)
                                                             }}
                                                             style={{ marginVertical: wide * 0.05, backgroundColor: Colors.main, width: wide * 0.35, height: wide * 0.1, justifyContent: 'center', alignItems: 'center', borderRadius: wide * 0.02 }}>
-                                                            <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>Give Ratings ?</Text>
+                                                            <Text style={{ color: 'white', fontSize: wide * 0.04, fontWeight: '600' }}>dar calificaciones ?</Text>
                                                         </TouchableOpacity>
                                             }
                                         </View>
@@ -759,7 +759,7 @@ const ServicesScreen = ({ navigation }) => {
 
                         :
                         <View style={{ height: '98%', alignItems: 'center', justifyContent: "center" }}>
-                            <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No Services Available</Text>
+                            <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No hay servicios disponibles</Text>
 
 
                         </View>

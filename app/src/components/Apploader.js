@@ -16,7 +16,7 @@ class AppLoader extends React.Component {
       <>
       {visible==true?
               <View style={styles.container}>
-                <ActivityIndicator animating size='large' color={Colors.main} />
+                <ActivityIndicator style={{ transform: [{ scaleX: 1.7 }, { scaleY: 1.7 }] }} animating  size='large' color={Colors.main} />
               </View>
               :
               <></>
@@ -35,7 +35,9 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    zIndex: 3, // works on ios
+    elevation: 3, // works on android
   },
 });
 

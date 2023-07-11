@@ -219,7 +219,7 @@ axios({
     if(response.data.data.error){
         Alert.alert(
             '',
-            'Service Request Successful',
+            'Solicitud de servicio exitosa',
           );
           navigation1.reset({
             index: 0,
@@ -229,7 +229,7 @@ axios({
     }else{
         Alert.alert(
             '',
-            'Failed To Request Service',
+            'No se pudo solicitar el servicio',
           );
     }
 
@@ -261,26 +261,26 @@ axios({
                             </TouchableOpacity>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
-                            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Request Service</Text>
+                            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Solicitar servicio</Text>
                         </View>
                     </View>
                     <View style={{ marginHorizontal: wide * 0.045, marginVertical: wide * 0.05 }} >
                         <Text style={{ alignSelf: 'center', color: Colors.main, fontWeight: '600', fontSize: wide * 0.08 }}>{sub_category_name}</Text>
                         <View>
-                            <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02, marginTop: wide * 0.06 }}>Name Of Services</Text>
+                            <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02, marginTop: wide * 0.06 }}>Nombre de los servicios</Text>
                             <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                <TextInput onChangeText={text => setNameOfServices(text)} placeholder='Enter Name Of Services' style={{ marginHorizontal: wide * 0.05 }} />
+                                <TextInput onChangeText={text => setNameOfServices(text)} placeholder='Ingrese el nombre de los servicios' style={{ marginHorizontal: wide * 0.05 }} />
                             </View>
-                            <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02, marginTop: wide * 0.06 }}>Describe Your Problem</Text>
+                            <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02, marginTop: wide * 0.06 }}>Describe tu problema</Text>
                             <View style={{ height: wide * 0.5, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.03 }}>
-                                <TextInput multiline={true} onChangeText={text => setProblem(text)} placeholder='Describe Your Problem' 
+                                <TextInput multiline={true} onChangeText={text => setProblem(text)} placeholder='Describe tu problemam' 
                                 style={{ lineHeight: wide * 0.05, marginHorizontal: wide * 0.05, marginTop: wide * 0.04 }} />
                             </View>
-                            <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02, marginTop: wide * 0.06 }}>Where?</Text>
+                            <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02, marginTop: wide * 0.06 }}>Dónde?</Text>
                          
 
                                 <GooglePlacesAutocomplete
-                                    placeholder="Select Your Address"
+                                    placeholder="Seleccione su dirección"
                                     onPress={(data, details = null) => {
                                       
                                        setWhere(data.description)
@@ -321,7 +321,7 @@ axios({
                                 Next()
                             }}
                                 style={{ marginTop: wide * 0.06, alignSelf: 'center', backgroundColor: Colors.main, width: wide * 0.3, height: wide * 0.1, borderRadius: wide * 0.02, justifyContent: 'center', alignItems: 'center' }}
-                            ><Text style={{ color: 'white', fontSize: wide * 0.045, fontWeight: '600' }}>Request</Text></TouchableOpacity>
+                            ><Text style={{ color: 'white', fontSize: wide * 0.045, fontWeight: '600' }}>Pedido</Text></TouchableOpacity>
                         </View>
                     </View>
                     </ScrollView>

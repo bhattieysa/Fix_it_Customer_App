@@ -158,7 +158,7 @@ console.log(response.data.data.length)
                             </TouchableOpacity>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
-                            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Offer List</Text>
+                            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Lista de ofertas</Text>
                         </View>
                     </View>
                     <View style={{ marginHorizontal: wide * 0.045, height: '98%' }}>
@@ -183,7 +183,7 @@ console.log(response.data.data.length)
                                                 <View style={{ marginLeft: wide * 0.03, flex: 2, marginVertical: wide * 0.02 }}>
                                                     <Text style={{ fontSize: wide * 0.05, fontWeight: 'bold', }}>{item.item.name}</Text>
                                                     <View style={{ flexDirection: 'row',marginVertical:wide*0.02 }}>
-                                                        <Text style={{ fontSize: wide * 0.05, fontWeight: 'bold', }}>Price</Text>
+                                                        <Text style={{ fontSize: wide * 0.05, fontWeight: 'bold', }}>Precio</Text>
                                                         <Text style={{ marginLeft: wide * 0.05, fontSize: wide * 0.05, fontWeight: 'bold', color: Colors.main }}>{item.item.price}</Text>
                                                     </View>
                                                 </View>
@@ -205,7 +205,7 @@ console.log(response.data.data.length)
                                                         })
                                                     }}
                                                     style={{ borderRadius: wide * 0.02, justifyContent: 'center', alignItems: 'center', width: wide * 0.05, flex: 0.7, backgroundColor: Colors.main, height: wide * 0.08, alignSelf: 'center', marginRight: wide * 0.02 }}>
-                                                    <Text style={{ color: 'white', fontWeight: '600', fontSize: wide * 0.035 }}>Accept</Text>
+                                                    <Text style={{ color: 'white', fontWeight: '600', fontSize: wide * 0.035 }}>Aceptar</Text>
                                                 </TouchableOpacity>
                                             </View>
                                         </TouchableOpacity>
@@ -215,7 +215,7 @@ console.log(response.data.data.length)
 
                             :
                             <View style={{ height: '83%', alignItems: 'center', justifyContent: "center" }}>
-                                <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No ServiceMan Applied</Text>
+                                <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No se aplica ServiceMan</Text>
 
 
                             </View>

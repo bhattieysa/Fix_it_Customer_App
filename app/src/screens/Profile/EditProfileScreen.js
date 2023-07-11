@@ -79,7 +79,7 @@ const EditProfileScreen = ({ route, navigation }) => {
     let high = Layout.height;
 
     useEffect(() => {
-        setLoading(true)
+        // setLoading(true)
         axios({
             method: 'POST',
             url: api.CATEGORY_URL,
@@ -107,11 +107,11 @@ const EditProfileScreen = ({ route, navigation }) => {
 
     const UploadImage = () => {
         Alert.alert(
-            "Upload Your Image",
-            'Select Pic From',
+            "Sube tu imagen",
+            'Seleccionar foto de',
             [
                 {
-                    text: 'Gallery',
+                    text: 'Galería',
                     onPress: () => {
                         ImagePicker.openPicker({
 
@@ -145,7 +145,7 @@ const EditProfileScreen = ({ route, navigation }) => {
                     }
                 },
                 {
-                    text: 'Camera', onPress: () => {
+                    text: 'Cámara', onPress: () => {
                         ImagePicker.openCamera({
                             width: 300,
                             height: 400,
@@ -164,7 +164,7 @@ const EditProfileScreen = ({ route, navigation }) => {
                     }
                 },
                 {
-                    text: 'Cancel',
+                    text: 'Cancelar',
                     // onPress: () => Toast.show('Cancel Pressed'),
                     style: 'cancel'
                 }
@@ -526,7 +526,7 @@ const EditProfileScreen = ({ route, navigation }) => {
                                 </TouchableOpacity>
                             </View>
                             <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
-                                <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Edit Profile</Text>
+                                <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Editar perfil</Text>
                             </View>
 
                         </View>
@@ -535,15 +535,15 @@ const EditProfileScreen = ({ route, navigation }) => {
                         <View style={{ marginHorizontal: wide * 0.07 }}>
 
                             <View style={{ marginTop: wide * 0.05 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Full Name</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Nombre completo</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput placeholder='Enter Full Name' value={fullName} onChangeText={text => setFullName(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput placeholder='Ingrese el nombre completo' value={fullName} onChangeText={text => setFullName(text)} style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
                             {fullName == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Full Name Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El nombre completo no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
@@ -558,22 +558,22 @@ const EditProfileScreen = ({ route, navigation }) => {
                             {dni == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >DNI Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >DNI no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
                                 <></>
                             }
                             <View style={{ marginTop: wide * 0.05 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Phonenumber</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Número de teléfono</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput placeholder='Enter Phonenumber' value={phonenumber} onChangeText={text => setPhonenumber(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput placeholder='Ingresa número telefónico' value={phonenumber} onChangeText={text => setPhonenumber(text)} style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
                             {phonenumber == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Phonenumber Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El número de teléfono no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
@@ -581,132 +581,132 @@ const EditProfileScreen = ({ route, navigation }) => {
                             }
 
                             <View style={{ marginTop: wide * 0.05 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Email Address</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Dirección de correo electrónico</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput value={emailAddress} onChangeText={text => setEmailAddress(text)} placeholder='Enter Email' style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput value={emailAddress} onChangeText={text => setEmailAddress(text)} placeholder='Ingrese correo electrónico' style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
                             {emailAddress == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Email Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El correo electrónico no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
                                 <></>
                             }
                             <View style={{ marginTop: wide * 0.05 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Password</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Contraseña</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput value={password} secureTextEntry={true} onChangeText={text => setPassword(text)} placeholder='Enter Password' style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput value={password} secureTextEntry={true} onChangeText={text => setPassword(text)} placeholder='Introducir la contraseña' style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
                             {password == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Password Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >La contraseña no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
                                 <></>
                             }
                             <View style={{ marginTop: wide * 0.05 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Brief Experience</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Breve Experiencia</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput value={experience} placeholder='Enter Brief Experience' onChangeText={text => setExperience(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput value={experience} placeholder='Ingrese Breve Experiencia' onChangeText={text => setExperience(text)} style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
                             {experience == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Brief Experience Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >La breve experiencia no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
                                 <></>
                             }
                             <View style={{ marginTop: wide * 0.05 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Address</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>DIRECCIÓN</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput value={address} placeholder='Enter Address' onChangeText={text => setAddress(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput value={address} placeholder='Ingresa la direccion' onChangeText={text => setAddress(text)} style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
                             {address == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Address Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >La dirección no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
                                 <></>
                             }
                             <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
-                                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Bank Details</Text>
+                                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Detalles del banco</Text>
                             </View>
 
                             <View style={{ marginTop: wide * 0.07 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Account Holder Name</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>nombre del titular de la cuenta</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput value={accountHolderName} placeholder='Enter Account Holder Name' onChangeText={text => setAccountHolderName(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput value={accountHolderName} placeholder='Ingrese el nombre del titular de la cuenta' onChangeText={text => setAccountHolderName(text)} style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
                             {accountHolderName == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Account Holder Name Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El nombre del titular de la cuenta no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
                                 <></>
                             }
                             <View style={{ marginTop: wide * 0.07 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Type Of Account</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Tipo de cuenta</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput value={typeOfAccount} placeholder='Enter Type Of Account' onChangeText={text => setTypeOfAccount(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput value={typeOfAccount} placeholder='Ingrese el tipo de cuenta' onChangeText={text => setTypeOfAccount(text)} style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
                             {typeOfAccount == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Type Of Account Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El tipo de cuenta no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
                                 <></>
                             }
                             <View style={{ marginTop: wide * 0.07 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Account Number</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Número de cuenta</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput value={accountNumber} placeholder='Enter Account Number' onChangeText={text => setAccountNumber(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput value={accountNumber} placeholder='Ingrese el número de cuenta' onChangeText={text => setAccountNumber(text)} style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
                             {accountNumber == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Account Number Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El número de cuenta no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
                                 <></>
                             }
                             <View style={{ marginTop: wide * 0.07 }} >
-                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Bank Name</Text>
+                                <Text style={{ color: '#2C3A4B', fontSize: 16, fontWeight: '600', marginLeft: wide * 0.03, marginBottom: wide * 0.02 }}>Nombre del banco</Text>
                                 <View style={{ height: wide * 0.125, borderColor: '#EBEEF2', borderWidth: 2, borderRadius: wide * 0.1, justifyContent: 'center' }}>
-                                    <TextInput value={bankName} placeholder='Enter Bank Name' onChangeText={text => setBankName(text)} style={{ marginHorizontal: wide * 0.05 }} />
+                                    <TextInput value={bankName} placeholder='Ingrese el nombre del banco' onChangeText={text => setBankName(text)} style={{ marginHorizontal: wide * 0.05 }} />
                                 </View>
                             </View>
 
                             {bankName == false ?
                                 <View style={{ height: wide * 0.052, borderRadius: 15, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, alignItems: 'flex-start', marginLeft: wide * 0.02, marginTop: wide * 0.02 }}>
-                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >Bank Name Can't Be Blank</Text>
+                                        <Text style={{ color: 'red', fontSize: 12, fontWeight: '600' }} >El nombre del banco no puede estar en blanco</Text>
                                     </View>
                                 </View>
                                 :
                                 <></>
                             }
                             <View style={{ backgroundColor: Colors.main, marginTop: wide * 0.07, paddingVertical: wide * 0.017, paddingLeft: wide * 0.05, borderRadius: wide * 0.01 }}>
-                                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Upload Your Image</Text>
+                                <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold', }}>Sube tu imagen</Text>
                             </View>
 
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: wide * 0.07 }}>
@@ -812,7 +812,7 @@ const EditProfileScreen = ({ route, navigation }) => {
                             <TouchableOpacity onPress={() => Update()} style={{ marginTop: wide * 0.1, justifyContent: 'center', alignItems: 'center' }} >
                                 <View style={{ backgroundColor: Colors.main, height: wide * 0.14, borderRadius: wide * 0.1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
                                     <View style={{ flex: 3, alignItems: 'center', }}>
-                                        <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold' }}>Update</Text>
+                                        <Text style={{ color: Colors.white, fontSize: wide * 0.05, fontWeight: 'bold' }}>Actualizar</Text>
                                     </View>
 
                                 </View>

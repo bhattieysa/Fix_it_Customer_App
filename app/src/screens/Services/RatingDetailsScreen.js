@@ -125,14 +125,14 @@ const RatingDetailsScreen = ({ route, navigation }) => {
             </TouchableOpacity>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', height: wide * 0.15 }}>
-            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Customer Valoration</Text>
+            <Text style={{ fontSize: 20, color: '#09101D', fontWeight: '600', marginLeft: wide * 0.05 }}>Valoración del cliente</Text>
           </View>
 
         </View>
         {ratingsData == null ?
 
           <View style={{ height: '85%', justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No Valoration Available</Text>
+            <Text style={{ color: Colors.main, fontSize: wide * 0.055, marginTop: wide * 0.01, fontWeight: "500" }}>No hay valoración disponible</Text>
           </View>
           :
           <View>
@@ -151,15 +151,15 @@ const RatingDetailsScreen = ({ route, navigation }) => {
                     <View style={{ alignItems: 'center', paddingVertical: wide * 0.03, backgroundColor: 'white', borderRadius: wide * 0.02 }}>
 
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Category</Text>
+                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Categoría</Text>
                                                 <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.category}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Sub Category</Text>
+                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Subcategoría</Text>
                                                 <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.sub_category}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row', marginVertical: wide * 0.02, marginHorizontal: wide * 0.05 }}>
-                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Service Name</Text>
+                                                <Text style={{ fontSize: wide * 0.05, color: Colors.main, fontWeight: '600', flex: 1.5 }}>Nombre del Servicio</Text>
                                                 <Text style={{ fontSize: wide * 0.05, color: 'black', fontWeight: '400', flex: 1 }}>{item.item.name}</Text>
                                             </View>
 
